@@ -66,15 +66,13 @@
     .demo-dots span:nth-child(3) { background: #28c840; }
     .demo-topbar-title { font-size: .85rem; font-weight: 700; color: var(--cr-text-muted); }
     .demo-topbar-tabs { display: flex; gap: 4px; }
-    .demo-tab { padding: 6px 16px; border-radius: 6px; font-size: .78rem; font-weight: 600; color: var(--cr-text-dim); cursor: pointer; transition: all var(--cr-transition); }
+    .demo-tab { padding: 6px 16px; border-radius: 6px; font-size: .78rem; font-weight: 600; color: var(--cr-text-dim); cursor: default; }
     .demo-tab.active { background: var(--cr-purple-dim); color: var(--cr-purple-light); }
-    .demo-tab:hover:not(.active) { background: rgba(255,255,255,.05); color: var(--cr-text-muted); }
     .demo-body { display: grid; grid-template-columns: 200px 1fr; min-height: 520px; }
     .demo-sidebar { background: rgba(0,0,0,.25); border-right: 1px solid var(--cr-border); padding: 24px 0; }
     .demo-sidebar-section { margin-bottom: 24px; }
     .demo-sidebar-heading { font-size: .62rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--cr-text-dim); font-weight: 700; padding: 0 16px 8px; }
-    .demo-sidebar-item { display: flex; align-items: center; gap: 9px; padding: 9px 16px; font-size: .83rem; color: var(--cr-text-dim); cursor: pointer; border-left: 2px solid transparent; transition: all var(--cr-transition); }
-    .demo-sidebar-item:hover  { color: var(--cr-text-muted); background: rgba(255,255,255,.03); }
+    .demo-sidebar-item { display: flex; align-items: center; gap: 9px; padding: 9px 16px; font-size: .83rem; color: var(--cr-text-dim); cursor: default; border-left: 2px solid transparent; }
     .demo-sidebar-item.active { color: var(--cr-purple-light); border-left-color: var(--cr-purple); background: var(--cr-purple-dim); }
     .demo-sidebar-item .item-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
     .demo-main { padding: 28px; overflow: auto; }
@@ -86,8 +84,7 @@
     .demo-chart-label { font-size: .72rem; text-transform: uppercase; letter-spacing: 1px; color: var(--cr-text-dim); margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; }
     .demo-chart-period { font-size: .72rem; color: var(--cr-text-dim); background: rgba(255,255,255,.05); border-radius: 4px; padding: 2px 8px; }
     .demo-bars { display: flex; align-items: flex-end; gap: 6px; height: 80px; }
-    .demo-bar { flex: 1; border-radius: 3px 3px 0 0; transition: opacity var(--cr-transition); min-width: 8px; }
-    .demo-bar:hover { opacity: .75; }
+    .demo-bar { flex: 1; border-radius: 3px 3px 0 0; min-width: 8px; }
     .demo-donut-wrap { display: flex; align-items: center; justify-content: center; height: 80px; position: relative; }
     .demo-donut {
       width: 80px; height: 80px; border-radius: 50%;
@@ -239,7 +236,7 @@
     <div class="cr-container">
       <span class="cr-tag">Live Tools &amp; Demo</span>
       <h1 style="margin-top:12px;max-width:640px;margin-left:auto;margin-right:auto;">Your Dashboards,<br><span class="cr-gradient-text">Live and Ready to Explore</span></h1>
-      <p style="color:var(--cr-text-muted);max-width:520px;margin:16px auto 0;font-size:1rem;">Three live dashboards are available below — open any of them now. Or explore the interactive demo to preview color schemes and layout before you buy.</p>
+      <p style="color:var(--cr-text-muted);max-width:520px;margin:16px auto 0;font-size:1rem;">Our available dashboards are live below — open any of them now. Or explore the interactive demo to preview color schemes and layout before you buy.</p>
     </div>
   </section>
 
