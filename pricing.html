@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Creator &amp; Ecomm Dashboard Pricing — Northwind Pulse</title>
+  <style>
+    :root {
+      --bg: #0f1117; --surface: #1a1d27; --surface2: #22263a; --border: #2e3350;
+      --accent: #6c63ff; --accent2: #00c9a7; --accent3: #ff6584;
+      --text: #e8eaf6; --muted: #8b90b0; --white: #ffffff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; min-height: 100vh; padding: 0 0 80px; }
+    header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 28px 40px; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-size: 1.1rem; font-weight: 700; color: var(--white); letter-spacing: 0.5px; }
+    .logo span { color: var(--accent2); }
+    .badge { background: var(--surface2); border: 1px solid var(--border); color: var(--muted); font-size: 0.75rem; padding: 4px 12px; border-radius: 20px; letter-spacing: 0.5px; }
+    .hero { text-align: center; padding: 60px 40px 40px; max-width: 700px; margin: 0 auto; }
+    .hero h1 { font-size: 2rem; font-weight: 700; color: var(--white); margin-bottom: 12px; }
+    .hero p { color: var(--muted); font-size: 1rem; line-height: 1.6; }
+    .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+    .section-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+    .platforms { display: flex; gap: 10px; justify-content: center; margin-bottom: 48px; flex-wrap: wrap; }
+    .pill { background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 8px 20px; font-size: 0.85rem; color: var(--text); font-weight: 600; }
+    .pill.ig { border-color: #e1306c; color: #e1306c; }
+    .pill.tt { border-color: #69c9d0; color: #69c9d0; }
+    .pill.sh { border-color: #96bf48; color: #96bf48; }
+    .tiers { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; margin-bottom: 16px; }
+    .tier { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 24px; position: relative; transition: border-color 0.2s; }
+    .tier:hover { border-color: var(--accent); }
+    .tier.featured { border-color: var(--accent); }
+    .tier-tag { position: absolute; top: -12px; left: 20px; background: var(--accent); color: var(--white); font-size: 0.68rem; font-weight: 700; letter-spacing: 1px; padding: 3px 10px; border-radius: 20px; text-transform: uppercase; }
+    .tier h3 { font-size: 0.95rem; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+    .tier .platforms-line { font-size: 0.75rem; color: var(--muted); margin-bottom: 12px; }
+    .tier .price { font-size: 1.5rem; font-weight: 800; color: var(--accent2); margin-bottom: 2px; }
+    .tier .price-note { font-size: 0.78rem; color: var(--muted); margin-bottom: 14px; }
+    .tier ul { list-style: none; }
+    .tier ul li { font-size: 0.8rem; color: var(--text); padding: 5px 0; border-top: 1px solid var(--border); display: flex; align-items: flex-start; gap: 7px; }
+    .tier ul li::before { content: "✓"; color: var(--accent2); font-weight: 700; flex-shrink: 0; }
+    .suite-note { background: var(--surface2); border: 1px solid var(--accent); border-radius: 10px; padding: 14px 20px; font-size: 0.83rem; color: var(--muted); margin-bottom: 48px; line-height: 1.6; }
+    .suite-note strong { color: var(--accent2); }
+    .table-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; margin-bottom: 16px; }
+    table { width: 100%; border-collapse: collapse; }
+    thead { background: var(--surface2); }
+    th { text-align: left; padding: 13px 20px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.5px; color: var(--muted); text-transform: uppercase; }
+    td { padding: 13px 20px; font-size: 0.86rem; border-top: 1px solid var(--border); color: var(--text); }
+    td strong { color: var(--white); }
+    td.green { color: var(--accent2); font-weight: 700; }
+    td.save { color: var(--muted); font-size: 0.8rem; }
+    tr:hover td { background: var(--surface2); }
+    .upgrade-box { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--accent3); border-radius: 0 10px 10px 0; padding: 16px 20px; font-size: 0.84rem; color: var(--muted); line-height: 1.6; margin-bottom: 48px; }
+    .upgrade-box strong { color: var(--white); }
+    .reasons { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 32px; margin-bottom: 48px; }
+    .reasons h3 { font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 20px; }
+    .reason-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+    .reason { display: flex; gap: 12px; align-items: flex-start; }
+    .reason-num { background: var(--surface2); color: var(--accent); font-size: 0.75rem; font-weight: 800; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .reason p { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+    .reason p strong { color: var(--text); }
+    .note { background: var(--surface2); border-left: 3px solid var(--accent2); padding: 16px 20px; border-radius: 0 8px 8px 0; font-size: 0.84rem; color: var(--muted); line-height: 1.6; margin-bottom: 48px; }
+    .note strong { color: var(--white); }
+    .cta { text-align: center; padding: 40px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; }
+    .cta h3 { font-size: 1.2rem; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+    .cta p { color: var(--muted); font-size: 0.9rem; margin-bottom: 20px; }
+    .cta a { display: inline-block; background: var(--accent); color: var(--white); padding: 12px 32px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 0.9rem; transition: opacity 0.2s; }
+    .cta a:hover { opacity: 0.85; }
+    .divider { margin: 48px 0 32px; }
+    .src-btn { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px 22px; color: var(--muted); font-size: 0.88rem; font-weight: 700; cursor: pointer; transition: all 0.2s; display: flex; flex-direction: column; gap: 2px; }
+    .src-btn:hover { border-color: var(--accent); color: var(--text); }
+    .src-btn.src-active { border-color: var(--accent); background: rgba(108,99,255,0.08); color: var(--white); }
+    .src-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center; transition: border-color 0.2s; }
+    .src-card-featured { border-color: var(--accent); }
+    .src-card-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+    .src-card-price { font-size: 1.4rem; font-weight: 800; color: var(--accent2); margin-bottom: 4px; transition: all 0.2s; }
+    .src-card-note { font-size: 0.73rem; color: var(--muted); margin-bottom: 12px; }
+    .src-card-suite { font-size: 0.75rem; padding-top: 10px; border-top: 1px solid var(--border); }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">Northwind <span>Pulse</span></div>
+    <div class="badge">Creator &amp; Ecomm Pricing · Confidential</div>
+  </header>
+
+  <div class="hero">
+    <h1>Creator &amp; Ecomm Dashboard Pricing</h1>
+    <p>Real-time analytics dashboards connecting your platforms — built for creators, influencers, and ecommerce brands who want to understand what's actually working.</p>
+  </div>
+
+  <div class="container">
+
+    <div style="text-align:center; margin-bottom: 32px;">
+      <div class="platforms">
+        <div class="pill ig">Instagram</div>
+        <div class="pill tt">TikTok</div>
+        <div class="pill sh">Shopify</div>
+      </div>
+      <div style="margin-top:14px;">
+        <a href="tools.html" style="display:inline-flex;align-items:center;gap:8px;color:var(--accent2);font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid var(--accent2);padding:8px 20px;border-radius:24px;transition:background 0.2s;" onmouseover="this.style.background='rgba(0,201,167,0.1)'" onmouseout="this.style.background='transparent'">
+          See Available Creator &amp; Ecomm Tools &rarr;
+        </a>
+      </div>
+    </div>
+
+    <div class="section-label">Installation &amp; Setup</div>
+
+    <div style="display:flex;gap:10px;margin-bottom:28px;flex-wrap:wrap;">
+      <button onclick="selectSource('single')" id="btn-single" class="src-btn src-active">
+        Single Source <span style="font-size:0.75rem;font-weight:400;opacity:0.7;">1 platform</span>
+      </button>
+      <button onclick="selectSource('dual')" id="btn-dual" class="src-btn">
+        Dual Source <span style="font-size:0.75rem;font-weight:400;opacity:0.7;">2 platforms</span>
+      </button>
+      <button onclick="selectSource('triple')" id="btn-triple" class="src-btn">
+        Triple Source <span style="font-size:0.75rem;font-weight:400;opacity:0.7;">3 platforms</span>
+      </button>
+    </div>
+
+    <div id="source-desc" style="font-size:0.83rem;color:var(--muted);margin-bottom:24px;padding:12px 16px;background:var(--surface2);border-radius:8px;border-left:3px solid var(--accent2);">
+      Connect <strong style="color:var(--text)">1 platform</strong> (Instagram, TikTok, or Shopify). Price below is <strong style="color:var(--text)">per dashboard</strong> — the more you buy together, the lower the per-dashboard cost.
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px;">
+      <div class="src-card">
+        <div class="src-card-label">1 Dashboard</div>
+        <div class="src-card-price" id="price-1">$450 – $750</div>
+        <div class="src-card-note">each · one-time</div>
+        <div class="src-card-suite" id="suite-1" style="color:var(--muted);">Suite UI: not included</div>
+      </div>
+      <div class="src-card src-card-featured">
+        <div class="src-card-label">2 Dashboards</div>
+        <div class="src-card-price" id="price-2">$350 – $550</div>
+        <div class="src-card-note">each · one-time</div>
+        <div class="src-card-suite" id="suite-2" style="color:var(--accent2);font-weight:700;">✓ Suite UI included</div>
+      </div>
+      <div class="src-card src-card-featured">
+        <div class="src-card-label">3+ Dashboards</div>
+        <div class="src-card-price" id="price-3">$275 – $450</div>
+        <div class="src-card-note">each · one-time</div>
+        <div class="src-card-suite" id="suite-3" style="color:var(--accent2);font-weight:700;">✓ Suite UI included</div>
+      </div>
+    </div>
+
+    <div style="font-size:0.78rem;color:var(--muted);margin-bottom:32px;padding:0 2px;">
+      Maintenance pricing is based on the number of connected platforms — see the maintenance section below.
+    </div>
+
+    <div class="suite-note">
+      <strong>Purchase 2 or more dashboards together</strong> and the Dashboard Suite UI is included free — a unified shell that puts all your dashboards in one place.
+      <span style="display:block;margin-top:10px;color:var(--muted);font-size:0.82rem;">Already have 1 dashboard and want to add another? Add the Suite UI for <strong style="color:var(--text)">$250</strong> (regularly $350).</span>
+    </div>
+
+    <div class="section-label">Ongoing Maintenance</div>
+    <div class="note">
+      <strong>Why this matters:</strong> Platforms like Meta and TikTok regularly update their APIs. Without maintenance, your dashboard can go dark — tokens expire, versions deprecate, metrics get renamed. A maintenance plan keeps everything running without you having to think about it.
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Connected Platforms (APIs)</th>
+            <th>Monthly <span style="font-weight:400;color:var(--muted)">(6-mo min)</span></th>
+            <th>Annual</th>
+            <th>Annual Savings</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1 Platform</strong><br><span style="color:var(--muted);font-size:0.78rem">e.g. Instagram only, or Shopify only</span></td>
+            <td class="green">$25/mo</td><td class="green">$255/yr</td><td class="save">~2 free months</td>
+          </tr>
+          <tr>
+            <td><strong>2 Platforms</strong><br><span style="color:var(--muted);font-size:0.78rem">e.g. Instagram + Shopify</span></td>
+            <td class="green">$45/mo</td><td class="green">$459/yr</td><td class="save">~2 free months</td>
+          </tr>
+          <tr>
+            <td><strong>3 Platforms</strong><br><span style="color:var(--muted);font-size:0.78rem">Instagram + TikTok + Shopify</span></td>
+            <td class="green">$75/mo</td><td class="green">$765/yr</td><td class="save">~2 free months</td>
+          </tr>
+          <tr>
+            <td><strong>Full Stack</strong><br><span style="color:var(--muted);font-size:0.78rem">All platforms + unified shell</span></td>
+            <td class="green">$100/mo</td><td class="green">$1,020/yr</td><td class="save">~2 free months</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="font-size:0.78rem;color:var(--muted);margin-bottom:16px;padding: 0 4px;">Maintenance is priced by the number of connected <strong style="color:var(--text)">platforms (APIs)</strong>, not the number of dashboards. Two Instagram dashboards = 1 platform = $25/mo.</div>
+
+    <div style="background:rgba(255,101,132,.06);border:1px solid rgba(255,101,132,.2);border-radius:10px;padding:14px 18px;margin-bottom:32px;font-size:0.83rem;line-height:1.6;">
+      <strong style="color:var(--text);">No active maintenance plan?</strong>
+      <span style="color:var(--muted);"> If your dashboard breaks and you're not on a current plan, reactivation is billed at a flat </span>
+      <strong style="color:var(--text);">$200 diagnostic and repair fee</strong>
+      <span style="color:var(--muted);"> before any work begins. Signing a maintenance plan at the time of repair waives this fee.</span>
+    </div>
+
+    <div class="upgrade-box">
+      <strong>Already have a Single Source and want to add a second?</strong> You can add a second platform and unlock the Dashboard Suite UI. The Suite UI add-on is <strong>$250 for existing clients</strong> (regularly $350) — a loyalty discount for coming back.
+    </div>
+
+    <div class="reasons">
+      <h3>What Maintenance Covers — and Why It Matters</h3>
+      <div class="reason-grid">
+        <div class="reason"><div class="reason-num">1</div><p><strong>API version updates</strong> — Meta and TikTok deprecate old API versions. We update your dashboard before it breaks.</p></div>
+        <div class="reason"><div class="reason-num">2</div><p><strong>Token renewal</strong> — Instagram API tokens expire every 60 days. We handle renewal so your dashboard never goes dark.</p></div>
+        <div class="reason"><div class="reason-num">3</div><p><strong>Metric accuracy</strong> — Platforms redefine how they calculate reach, impressions, and engagement. We keep your numbers trustworthy.</p></div>
+        <div class="reason"><div class="reason-num">4</div><p><strong>New platform features</strong> — TikTok Shop, new Reels metrics, Threads — new data becomes available and you'll want it added.</p></div>
+        <div class="reason"><div class="reason-num">5</div><p><strong>Data accuracy audits</strong> — Monthly spot-checks that your dashboard matches what you see in-app. Catches drift before it matters.</p></div>
+        <div class="reason"><div class="reason-num">6</div><p><strong>Troubleshooting</strong> — If something breaks, you have someone to call — not a new invoice to negotiate.</p></div>
+        <div class="reason"><div class="reason-num">7</div><p><strong>Security</strong> — API credentials are sensitive. Maintenance includes credential hygiene, especially if your team changes.</p></div>
+        <div class="reason"><div class="reason-num">8</div><p><strong>Dashboard evolution</strong> — Your business grows. New KPIs, new views, new questions. Minor updates are included.</p></div>
+      </div>
+    </div>
+
+    <div class="cta">
+      <h3>Ready to connect your platforms?</h3>
+      <p>Let's talk about what you're selling, where you're posting, and what data you actually need to see.</p>
+      <a href="contact.html">Get in Touch</a>
+    </div>
+
+  </div>
+
+<script>
+const pricing = {
+  single: {
+    desc: 'Connect <strong style="color:var(--text)">1 platform</strong> (Instagram, TikTok, or Shopify). Price below is <strong style="color:var(--text)">per dashboard</strong> — the more you buy together, the lower the per-dashboard cost.',
+    p1: '$450 – $750', p2: '$350 – $550', p3: '$275 – $450'
+  },
+  dual: {
+    desc: 'Connect <strong style="color:var(--text)">2 platforms</strong> (e.g. Instagram + Shopify). Each "dashboard" here includes data from both platforms. Price is <strong style="color:var(--text)">per dashboard</strong>.',
+    p1: '$750 – $1,200', p2: '$550 – $900', p3: '$450 – $700'
+  },
+  triple: {
+    desc: 'Connect <strong style="color:var(--text)">all 3 platforms</strong> (Instagram, TikTok, and Shopify). Each dashboard pulls from all three. Price is <strong style="color:var(--text)">per dashboard</strong>.',
+    p1: '$1,500 – $2,200', p2: '$1,100 – $1,700', p3: '$900 – $1,300'
+  }
+};
+
+function selectSource(src) {
+  ['single','dual','triple'].forEach(s => {
+    document.getElementById('btn-' + s).classList.toggle('src-active', s === src);
+  });
+  const d = pricing[src];
+  document.getElementById('source-desc').innerHTML = d.desc;
+  document.getElementById('price-1').textContent = d.p1;
+  document.getElementById('price-2').textContent = d.p2;
+  document.getElementById('price-3').textContent = d.p3;
+}
+</script>
+</body>
+</html>
