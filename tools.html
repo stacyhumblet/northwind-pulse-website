@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tools Suite Demo — Northwind Pulse</title>
-  <meta name="description" content="Preview the Northwind Pulse Creator Tools Suite — your dashboards, your data, your color scheme." />
+  <title>Tools &amp; Live Dashboards — Northwind Pulse</title>
+  <meta name="description" content="Explore live Northwind Pulse dashboards for Shopify, Instagram, and cross-platform attribution — or request a custom tool built around your data." />
   <link rel="stylesheet" href="styles.css" />
   <style>
     .demo-hero {
@@ -124,6 +124,93 @@
       .demo-kpi-row { grid-template-columns: 1fr; }
       .demo-topbar-tabs { display: none; }
     }
+    /* Live dashboard cards */
+    .live-dash-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .live-dash-card {
+      background: var(--cr-surface);
+      border: 1px solid var(--cr-border);
+      border-radius: var(--cr-radius-lg);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: border-color var(--cr-transition), transform var(--cr-transition), box-shadow var(--cr-transition);
+    }
+    .live-dash-card:hover {
+      border-color: var(--cr-border-glow);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(0,0,0,.3);
+    }
+    .live-dash-card-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; flex-shrink: 0;
+    }
+    .live-dash-card-title {
+      font-size: 1rem; font-weight: 700; color: var(--cr-text); margin: 0;
+    }
+    .live-dash-card-desc {
+      font-size: .83rem; color: var(--cr-text-muted); margin: 0;
+      line-height: 1.55; flex: 1;
+    }
+    .live-dash-card-tags {
+      display: flex; gap: 6px; flex-wrap: wrap;
+    }
+    .live-dash-card-tag {
+      font-size: .68rem; font-weight: 600;
+      padding: 3px 10px; border-radius: 100px;
+      background: rgba(255,255,255,.06);
+      color: var(--cr-text-dim); letter-spacing: .3px;
+    }
+    .live-dash-card-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 9px 20px; border-radius: 8px;
+      font-size: .82rem; font-weight: 700;
+      text-decoration: none;
+      transition: opacity var(--cr-transition);
+      margin-top: 4px; align-self: flex-start;
+    }
+    .live-dash-card-btn:hover { opacity: .85; }
+    /* Request custom tool */
+    .request-custom-wrap {
+      background: linear-gradient(135deg, rgba(168,85,247,.1) 0%, rgba(6,182,212,.07) 100%);
+      border: 1px solid rgba(168,85,247,.25);
+      border-radius: var(--cr-radius-xl);
+      padding: 52px 48px;
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .request-custom-icon {
+      width: 64px; height: 64px;
+      background: rgba(168,85,247,.15);
+      border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem;
+      margin: 0 auto 20px;
+    }
+    .request-custom-bullets {
+      display: flex; gap: 12px; justify-content: center;
+      flex-wrap: wrap; margin: 20px 0 28px;
+    }
+    .request-custom-bullet {
+      display: flex; align-items: center; gap: 7px;
+      font-size: .8rem; color: var(--cr-text-muted);
+    }
+    .request-custom-bullet svg { flex-shrink: 0; }
+    @media (max-width: 900px) {
+      .live-dash-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .live-dash-grid { grid-template-columns: 1fr; }
+      .request-custom-wrap { padding: 36px 24px; }
+    }
   </style>
 </head>
 <body class="creator-page">
@@ -141,7 +228,7 @@
         <ul class="cr-nav-links" id="crNav3">
           <li><a href="index.html">Home</a></li>
           <li><a href="services.html">Platforms &amp; Pricing</a></li>
-          <li><a href="tools.html" class="active">Tools Demo</a></li>
+          <li><a href="tools.html" class="active">Tools &amp; Dashboards</a></li>
           <li><a href="contact.html" class="cr-nav-cta">Get Started</a></li>
         </ul>
       </div>
@@ -150,9 +237,9 @@
 
   <section class="demo-hero">
     <div class="cr-container">
-      <span class="cr-tag">Tools Suite Preview</span>
-      <h1 style="margin-top:12px;max-width:600px;margin-left:auto;margin-right:auto;">This Is What Your<br><span class="cr-gradient-text">Dashboard Suite Looks Like</span></h1>
-      <p style="color:var(--cr-text-muted);max-width:480px;margin:16px auto 0;font-size:1rem;">All the tools you purchase from Northwind Pulse live in one place. Toggle your color scheme and switch between light and dark mode below.</p>
+      <span class="cr-tag">Live Tools &amp; Demo</span>
+      <h1 style="margin-top:12px;max-width:640px;margin-left:auto;margin-right:auto;">Your Dashboards,<br><span class="cr-gradient-text">Live and Ready to Explore</span></h1>
+      <p style="color:var(--cr-text-muted);max-width:520px;margin:16px auto 0;font-size:1rem;">Three live dashboards are available below — open any of them now. Or explore the interactive demo to preview color schemes and layout before you buy.</p>
     </div>
   </section>
 
@@ -301,6 +388,67 @@
     </div>
   </section>
 
+  <section class="cr-section">
+    <div class="cr-container">
+      <div class="cr-section-header">
+        <span class="cr-tag">Available Now</span>
+        <h2>Live Dashboards</h2>
+        <p>These tools are fully deployed and running on real data. Open any of them to see what your dashboard will look like with your own numbers.</p>
+      </div>
+      <div class="live-dash-grid">
+
+        <div class="live-dash-card">
+          <div class="live-dash-card-icon" style="background:rgba(150,191,72,.12);">🛍️</div>
+          <div>
+            <div class="live-dash-card-title">Revenue &amp; Sales Performance</div>
+            <div style="font-size:.72rem;color:var(--cr-text-dim);margin-top:3px;font-weight:600;letter-spacing:.4px;">Shopify</div>
+          </div>
+          <p class="live-dash-card-desc">Track gross revenue, net sales, orders, and AOV over time. Filter by order status, traffic source, and time period. Includes forecasting and goal tracking.</p>
+          <div class="live-dash-card-tags">
+            <span class="live-dash-card-tag">Revenue</span>
+            <span class="live-dash-card-tag">Orders</span>
+            <span class="live-dash-card-tag">AOV</span>
+            <span class="live-dash-card-tag">Forecast</span>
+          </div>
+          <a href="https://script.google.com/macros/s/AKfycbyRJF2RWQROhjMDEQEyATTjgQ1jlBUbTRcDJ_132hjYOokSlTdLBN7ZuW4AuS8BkD3g/exec" target="_blank" rel="noopener noreferrer" class="live-dash-card-btn" style="background:rgba(150,191,72,.15);color:#96bf48;border:1px solid rgba(150,191,72,.3);">View Live →</a>
+        </div>
+
+        <div class="live-dash-card">
+          <div class="live-dash-card-icon" style="background:rgba(225,48,108,.1);">📸</div>
+          <div>
+            <div class="live-dash-card-title">Revenue &amp; Conversion</div>
+            <div style="font-size:.72rem;color:var(--cr-text-dim);margin-top:3px;font-weight:600;letter-spacing:.4px;">Instagram</div>
+          </div>
+          <p class="live-dash-card-desc">Measure sessions, CVR, and revenue driven by Instagram. Break down by campaign and content type. Includes conversion funnel, monthly trends, and pacing against goals.</p>
+          <div class="live-dash-card-tags">
+            <span class="live-dash-card-tag">Sessions</span>
+            <span class="live-dash-card-tag">CVR</span>
+            <span class="live-dash-card-tag">Revenue</span>
+            <span class="live-dash-card-tag">Forecast</span>
+          </div>
+          <a href="https://script.google.com/macros/s/AKfycbyk9D2m4ZWuXVEGznBqsrzSS2lWJCoyebQ0uhICVpJk9AO9rFAr4ts_c20u2WuHPnQe0A/exec" target="_blank" rel="noopener noreferrer" class="live-dash-card-btn" style="background:rgba(225,48,108,.1);color:#e1306c;border:1px solid rgba(225,48,108,.25);">View Live →</a>
+        </div>
+
+        <div class="live-dash-card">
+          <div class="live-dash-card-icon" style="background:rgba(168,85,247,.12);">🔀</div>
+          <div>
+            <div class="live-dash-card-title">Cross-Platform Attribution</div>
+            <div style="font-size:.72rem;color:var(--cr-text-dim);margin-top:3px;font-weight:600;letter-spacing:.4px;">Instagram · TikTok · YouTube · Paid</div>
+          </div>
+          <p class="live-dash-card-desc">See which platforms are actually driving revenue. Stacked revenue by channel, blended CVR and ROAS, funnel overview, and trend forecasting across your full traffic mix.</p>
+          <div class="live-dash-card-tags">
+            <span class="live-dash-card-tag">Multi-Channel</span>
+            <span class="live-dash-card-tag">ROAS</span>
+            <span class="live-dash-card-tag">Attribution</span>
+            <span class="live-dash-card-tag">Forecast</span>
+          </div>
+          <a href="https://xplat-tools.northwind-consulting.com" target="_blank" rel="noopener noreferrer" class="live-dash-card-btn" style="background:rgba(168,85,247,.12);color:#a855f7;border:1px solid rgba(168,85,247,.3);">View Live →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <section class="cr-section cr-section-alt">
     <div class="cr-container">
       <div class="cr-section-header">
@@ -328,6 +476,37 @@
     </div>
   </section>
 
+  <section class="cr-section">
+    <div class="cr-container">
+      <div class="request-custom-wrap">
+        <div class="request-custom-icon">🛠️</div>
+        <span class="cr-tag" style="display:inline-block;margin-bottom:14px;">Custom Builds</span>
+        <h2 style="margin:0 0 12px;">Need Something Different?</h2>
+        <p style="color:var(--cr-text-muted);font-size:.95rem;margin:0 0 4px;max-width:480px;margin-left:auto;margin-right:auto;">The dashboards above are our most-requested tools — but every business is different. If you need a custom metric, a different platform, or a dashboard built around your specific workflow, we can build it.</p>
+        <div class="request-custom-bullets">
+          <div class="request-custom-bullet">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Any data source or platform
+          </div>
+          <div class="request-custom-bullet">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Custom metrics &amp; KPIs
+          </div>
+          <div class="request-custom-bullet">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Your branding &amp; color scheme
+          </div>
+          <div class="request-custom-bullet">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Delivered in 1–2 weeks
+          </div>
+        </div>
+        <a href="contact.html?subject=custom-tool" class="cr-btn cr-btn-primary">Request a Custom Tool →</a>
+        <p style="font-size:.75rem;color:var(--cr-text-dim);margin:14px 0 0;">We'll reply within 1 business day with a scope and estimate.</p>
+      </div>
+    </div>
+  </section>
+
   <section class="cr-cta-banner">
     <div class="cr-container" style="position:relative;z-index:1;">
       <h2>Ready to Build Your Suite?</h2>
@@ -351,7 +530,7 @@
           <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="services.html">Platforms &amp; Pricing</a></li>
-            <li><a href="tools.html">Tools Demo</a></li>
+            <li><a href="tools.html">Tools &amp; Dashboards</a></li>
             <li><a href="contact.html">Get in Touch</a></li>
           </ul>
         </div>
