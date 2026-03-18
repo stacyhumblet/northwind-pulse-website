@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Pulse Icon Inverse — 1024x1024</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 24px;
+      min-height: 100vh;
+    }
+    .btn {
+      padding: 12px 28px;
+      background: linear-gradient(135deg, #a855f7, #06b6d4);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .note {
+      color: #888;
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 0.85rem;
+    }
+    .icon {
+      width: 1024px;
+      height: 1024px;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .icon-inner {
+      background: linear-gradient(135deg, #a855f7 0%, #06b6d4 100%);
+      border-radius: 48px;
+      padding: 60px 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .icon-text {
+      font-family: 'Montserrat', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-size: 220px;
+      font-weight: 900;
+      color: #000;
+      letter-spacing: -4px;
+      line-height: 1;
+    }
+    .icon-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #000;
+      margin-top: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="icon" id="icon">
+    <div class="icon-inner">
+      <span class="icon-text">Pulse</span>
+      <div class="icon-dot"></div>
+    </div>
+  </div>
+  <button class="btn" onclick="downloadIcon()">⬇ Download 1024×1024 PNG</button>
+  <p class="note">Uses html2canvas — may take a second to render.</p>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script>
+    function downloadIcon() {
+      const el = document.getElementById('icon');
+      html2canvas(el, { width: 1024, height: 1024, scale: 1, backgroundColor: '#000000' }).then(canvas => {
+        const link = document.createElement('a');
+        link.download = 'northwind-pulse-icon-inverse-1024.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      });
+    }
+  </script>
+</body>
+</html>
