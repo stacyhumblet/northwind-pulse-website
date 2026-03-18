@@ -260,11 +260,11 @@
 
 .cr-nav-logo-sub {
   display: block;
-  font-size: 0.55rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--cr-text-dim);
+  color: rgba(168, 85, 247, 0.55);
   margin-top: -2px;
   white-space: nowrap;
 }
