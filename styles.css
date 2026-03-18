@@ -1,7 +1,16 @@
+/*
+ * Copyright © 2026 Northwind Pulse. All rights reserved.
+ * Unauthorized copying, reverse engineering, or redistribution
+ * of this software is strictly prohibited.
+ * https://northwind-pulse.com/terms.html
+ */
+
 /* ============================================================
    Northwind Pulse — Creator & Ecommerce Theme
    styles.css  |  Dark Mode with color pops
    ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
 
 /* ---------- Creator Variables ---------- */
 :root {
@@ -217,13 +226,27 @@
 }
 
 .cr-nav-logo-text {
-  font-size: 1.1rem;
-  font-weight: 700;
+  font-family: 'Montserrat', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.35rem;
+  font-weight: 900;
   background: var(--cr-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   white-space: nowrap;
+  letter-spacing: -0.5px;
+}
+
+.cr-nav-logo-dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--cr-gradient);
+  margin-left: 2px;
+  vertical-align: middle;
+  position: relative;
+  top: 2px;
 }
 
 .cr-nav-links {
