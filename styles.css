@@ -237,6 +237,26 @@
   letter-spacing: -0.5px;
 }
 
+.cr-hero-tagline {
+  font-family: 'Montserrat', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.1rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--cr-text-dim);
+  margin-bottom: 16px;
+}
+
+.cr-section-catchphrase {
+  font-family: 'Montserrat', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--cr-text-dim);
+  margin-bottom: 12px;
+}
+
 .cr-nav-logo-dot {
   display: inline-block;
   width: 5px;
