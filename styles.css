@@ -207,8 +207,9 @@
 
 .cr-nav-logo {
   display: flex;
-  align-items: center;
-  gap: 12px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
   text-decoration: none;
   flex-shrink: 0;
 }
@@ -255,6 +256,24 @@
   text-transform: uppercase;
   color: var(--cr-text-dim);
   margin-bottom: 12px;
+}
+
+.cr-nav-logo-sub {
+  display: block;
+  font-size: 0.55rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cr-text-dim);
+  margin-top: -2px;
+  white-space: nowrap;
+}
+
+.cr-nav-logo-text sup,
+.cr-nav-logo-text .tm {
+  font-size: 0.55em;
+  font-weight: 700;
+  vertical-align: super;
 }
 
 .cr-nav-logo-dot {
