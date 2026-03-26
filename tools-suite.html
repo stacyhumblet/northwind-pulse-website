@@ -1,22 +1,23 @@
 <!--
-  Copyright © 2026 Northwind Pulse™. All rights reserved.
-  Unauthorized copying, reverse engineering, redistribution,
-  or reproduction of this software is strictly prohibited.
-  https://northwind-pulse.com/terms.html
+     Copyright © 2026 Northwind Pulse™. All rights reserved.
+     Unauthorized copying, reverse engineering, redistribution,
+     or reproduction of this software is strictly prohibited.
+     https://northwind-pulse.com/terms.html
 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Creator &amp; Ecommerce Tools Suite - Northwind Pulse™</title>
-  <meta name="description" content="Browse all available Northwind Pulse™ tools - live dashboards for Shopify, Instagram, TikTok, and cross-platform analytics." />
+  <title>Tools Suite - Northwind Pulse™</title>
+  <meta name="description" content="Explore and launch Northwind Pulse™ creator & ecommerce dashboards - Shopify revenue, Instagram conversion, cross-platform attribution, and more." />
   <link rel="stylesheet" href="styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    /* ── Suite-specific layout ── */
+    /* ── Page shell ── */
+    html, body { height: 100%; }
     .suite-page {
       font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
       background: var(--cr-bg);
@@ -26,21 +27,22 @@
       flex-direction: column;
     }
 
-    /* Sticky header reuses cr-navbar but we override for dark-only */
+    /* ── Header ── */
     .suite-header {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(7,7,15,.88);
+      background: rgba(7,7,15,.92);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--cr-border);
+      flex-shrink: 0;
     }
     .suite-header-inner {
-      max-width: 1280px;
+      max-width: 1400px;
       margin: 0 auto;
       padding: 0 24px;
-      height: 66px;
+      height: 60px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -54,206 +56,393 @@
       flex-shrink: 0;
     }
     .suite-brand-name {
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 700;
       color: var(--cr-text);
       letter-spacing: -.2px;
     }
     .suite-brand-sub {
-      font-size: 10px;
+      font-size: 9.5px;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: .7px;
       color: var(--cr-purple);
       opacity: .85;
     }
-
-    /* Search */
-    .suite-search-wrap {
-      position: relative;
-      width: 240px;
-    }
-    .suite-search-wrap svg {
-      position: absolute;
-      left: 11px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--cr-text-dim);
-      pointer-events: none;
-    }
-    #suiteSearch {
-      width: 100%;
-      background: var(--cr-surface);
-      border: 1px solid var(--cr-border);
-      border-radius: var(--cr-radius);
-      color: var(--cr-text);
-      font-size: 13px;
-      font-family: inherit;
-      padding: 8px 12px 8px 36px;
-      outline: none;
-      transition: border-color var(--cr-transition), box-shadow var(--cr-transition);
-    }
-    #suiteSearch::placeholder { color: var(--cr-text-dim); }
-    #suiteSearch:focus {
-      border-color: var(--cr-border-glow);
-      box-shadow: 0 0 0 3px var(--cr-purple-dim);
-    }
-
-    /* Main */
-    .suite-main {
-      flex: 1;
-      max-width: 1280px;
-      margin: 0 auto;
-      width: 100%;
-      padding: 32px 24px 80px;
-    }
-
-    /* Section heading */
-    .suite-section-heading {
+    .suite-nav {
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin: 36px 0 16px;
-      font-size: 10.5px;
+      gap: 20px;
+      font-size: .8rem;
+    }
+    .suite-nav a {
+      color: var(--cr-text-dim);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color var(--cr-transition);
+    }
+    .suite-nav a:hover, .suite-nav a.active { color: var(--cr-text); }
+    .suite-nav a.active { font-weight: 600; }
+    .suite-nav-cta {
+      color: var(--cr-purple-light) !important;
+      border: 1.5px solid var(--cr-border-glow);
+      border-radius: 8px;
+      padding: 6px 14px;
+      font-weight: 700 !important;
+      transition: background var(--cr-transition) !important;
+    }
+    .suite-nav-cta:hover { background: var(--cr-purple-dim); }
+
+    /* ── Breadcrumb ── */
+    .suite-breadcrumb {
+      background: var(--cr-surface);
+      border-bottom: 1px solid var(--cr-border);
+      padding: 7px 24px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11.5px;
+      color: var(--cr-text-dim);
+      flex-shrink: 0;
+    }
+    .suite-breadcrumb a {
+      color: var(--cr-text-dim);
+      text-decoration: none;
+      transition: color var(--cr-transition);
+    }
+    .suite-breadcrumb a:hover { color: var(--cr-purple-light); }
+
+    /* ── Split panel ── */
+    .split-panel {
+      display: flex;
+      height: calc(100vh - 60px - 34px);
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    /* ── Sidebar ── */
+    .split-sidebar {
+      width: 230px;
+      flex-shrink: 0;
+      background: var(--cr-surface);
+      border-right: 1px solid var(--cr-border);
+      overflow-y: auto;
+      padding: 10px 0 20px;
+      display: flex;
+      flex-direction: column;
+    }
+    .split-sidebar::-webkit-scrollbar { width: 4px; }
+    .split-sidebar::-webkit-scrollbar-thumb { background: var(--cr-border); border-radius: 4px; }
+
+    .sidebar-suite-label {
+      font-size: 9px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 1.2px;
+      letter-spacing: 1px;
       color: var(--cr-text-dim);
+      padding: 4px 16px 10px;
+      border-bottom: 1px solid var(--cr-border);
+      margin-bottom: 8px;
     }
-    .suite-section-heading:first-child { margin-top: 8px; }
-    .suite-section-dot {
-      width: 8px; height: 8px;
+
+    .sidebar-section { margin-bottom: 4px; }
+    .sidebar-section-label {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 9.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .9px;
+      color: var(--cr-text-dim);
+      padding: 10px 16px 4px;
+    }
+    .sidebar-dot {
+      width: 6px; height: 6px;
       border-radius: 50%;
       flex-shrink: 0;
     }
-    .suite-section-heading::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--cr-border);
-    }
 
-    /* Card grid */
-    .suite-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 16px;
-    }
-
-    /* Tool card */
-    .suite-card {
+    .sidebar-item {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      width: 100%;
+      padding: 8px 14px 8px 16px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--cr-text-muted);
+      text-align: left;
+      transition: background var(--cr-transition), color var(--cr-transition);
+      border-left: 2.5px solid transparent;
       position: relative;
+    }
+    .sidebar-item:hover:not(.dim) {
+      background: rgba(255,255,255,.04);
+      color: var(--cr-text);
+    }
+    .sidebar-item.active {
+      background: var(--cr-purple-dim);
+      color: var(--cr-text);
+      font-weight: 600;
+      border-left-color: var(--cr-purple);
+    }
+    .sidebar-item.dim {
+      opacity: .38;
+      cursor: default;
+      font-style: italic;
+      font-size: 12px;
+    }
+    .sidebar-item-icon { font-size: 14px; flex-shrink: 0; }
+    .sidebar-item-label { flex: 1; }
+    .cs-tag {
+      font-size: 8.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .4px;
+      color: var(--cr-text-dim);
+      background: rgba(255,255,255,.06);
+      border: 1px solid var(--cr-border);
+      border-radius: 100px;
+      padding: 1px 6px;
+      flex-shrink: 0;
+    }
+
+    /* ── Content pane ── */
+    .split-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .split-content-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 18px;
+      background: rgba(255,255,255,.015);
+      border-bottom: 1px solid var(--cr-border);
+      flex-shrink: 0;
+      gap: 12px;
+    }
+    .split-content-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--cr-text);
+    }
+    .split-content-link {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--cr-purple-light);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      opacity: .85;
+      transition: opacity var(--cr-transition);
+    }
+    .split-content-link:hover { opacity: 1; }
+
+    #dashFrame {
+      flex: 1;
+      width: 100%;
+      border: none;
+      background: var(--cr-bg);
+    }
+
+    /* Coming-soon placeholder */
+    .dash-placeholder {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      gap: 10px;
+      color: var(--cr-text-dim);
+    }
+    .dash-placeholder-icon { font-size: 2.8rem; }
+    .dash-placeholder-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--cr-text);
+    }
+    .dash-placeholder-sub {
+      font-size: .88rem;
+      color: var(--cr-text-dim);
+      max-width: 320px;
+    }
+    .dash-placeholder-cta {
+      margin-top: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: .8rem;
+      font-weight: 700;
+      color: var(--cr-purple-light);
+      border: 1.5px solid var(--cr-border-glow);
+      border-radius: 8px;
+      padding: 8px 18px;
+      text-decoration: none;
+      transition: background var(--cr-transition);
+    }
+    .dash-placeholder-cta:hover { background: var(--cr-purple-dim); }
+
+    /* ── Which tool section ── */
+    .which-tool-section {
+      padding: 64px 24px 80px;
+      max-width: 1080px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .which-tool-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .which-tool-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--cr-purple-light);
+      margin-bottom: 10px;
+    }
+    .which-tool-header h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 0 0 10px;
+    }
+    .which-tool-header p {
+      color: var(--cr-text-muted);
+      font-size: .95rem;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .wt-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .wt-card {
       background: var(--cr-card);
       border: 1px solid var(--cr-border);
       border-radius: var(--cr-radius-lg);
-      padding: 22px;
+      padding: 24px;
       display: flex;
       flex-direction: column;
+      gap: 16px;
+      border-top: 3px solid var(--wt-accent, var(--cr-purple));
+    }
+    .wt-card-head {
+      display: flex;
+      align-items: flex-start;
       gap: 12px;
-      text-decoration: none;
-      color: inherit;
-      overflow: hidden;
-      transition:
-        transform var(--cr-transition),
-        border-color var(--cr-transition),
-        box-shadow var(--cr-transition),
-        background var(--cr-transition);
     }
-    .suite-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: var(--card-accent, var(--cr-purple));
-      border-radius: var(--cr-radius-lg) var(--cr-radius-lg) 0 0;
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform var(--cr-transition);
-    }
-    .suite-card:hover {
-      transform: translateY(-3px);
-      border-color: var(--card-accent, var(--cr-purple));
-      box-shadow: var(--cr-shadow-card), 0 0 0 1px var(--card-accent, var(--cr-purple)) inset;
-      background: var(--cr-card-hover);
-    }
-    .suite-card:hover::before { transform: scaleX(1); }
-
-    .suite-card-icon {
-      width: 44px; height: 44px;
-      border-radius: 11px;
+    .wt-card-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
       display: flex; align-items: center; justify-content: center;
-      background: var(--card-accent-dim, var(--cr-purple-dim));
-      font-size: 1.3rem;
+      font-size: 1.2rem;
+      background: var(--wt-accent-dim, var(--cr-purple-dim));
       flex-shrink: 0;
     }
-    .suite-card-body { flex: 1; display: flex; flex-direction: column; gap: 4px; }
-    .suite-card-cat {
-      font-size: 10px; font-weight: 700;
-      text-transform: uppercase; letter-spacing: .8px;
-      color: var(--card-accent, var(--cr-purple));
+    .wt-card-platform {
+      font-size: 9.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .7px;
+      color: var(--wt-accent, var(--cr-purple));
+      margin-bottom: 2px;
     }
-    .suite-card-title {
-      font-size: 15px; font-weight: 600; line-height: 1.3;
+    .wt-card-name {
+      font-size: 14px;
+      font-weight: 600;
       color: var(--cr-text);
-    }
-    .suite-card-desc {
-      font-size: 12px; color: var(--cr-text-muted);
-      line-height: 1.55; margin-top: 3px;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-    .suite-card-footer {
-      display: flex; align-items: center; justify-content: flex-end;
-      gap: 4px; font-size: 12px; font-weight: 600;
-      color: var(--cr-text-dim);
-      transition: color var(--cr-transition);
-    }
-    .suite-card:hover .suite-card-footer { color: var(--card-accent, var(--cr-purple)); }
-    .suite-card-footer svg { flex-shrink: 0; }
-
-    /* Tag pills */
-    .suite-card-tags { display: flex; gap: 5px; flex-wrap: wrap; }
-    .suite-card-tag {
-      font-size: .67rem; font-weight: 600;
-      padding: 2px 9px; border-radius: 100px;
-      background: rgba(255,255,255,.05);
-      color: var(--cr-text-dim); letter-spacing: .3px;
+      line-height: 1.3;
     }
 
-    /* "Coming soon" badge */
-    .suite-card.coming-soon {
-      opacity: .5;
-      pointer-events: none;
-    }
-    .suite-coming-badge {
-      position: absolute;
-      top: 14px; right: 14px;
-      font-size: .65rem; font-weight: 700;
-      text-transform: uppercase; letter-spacing: .5px;
-      background: rgba(255,255,255,.07);
+    .wt-block-label {
+      font-size: 9.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .7px;
       color: var(--cr-text-dim);
-      border: 1px solid var(--cr-border);
+      margin-bottom: 8px;
+    }
+    .wt-fields {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+    .wt-field {
+      font-size: 11px;
+      font-weight: 500;
+      padding: 3px 10px;
       border-radius: 100px;
-      padding: 2px 9px;
+      background: rgba(255,255,255,.05);
+      color: var(--cr-text-dim);
+      border: 1px solid rgba(255,255,255,.07);
     }
-
-    /* Empty search state */
-    .suite-empty {
-      display: none;
+    .wt-questions {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
       flex-direction: column;
+      gap: 6px;
+    }
+    .wt-questions li {
+      font-size: 12.5px;
+      color: var(--cr-text-muted);
+      display: flex;
+      align-items: flex-start;
+      gap: 7px;
+      line-height: 1.45;
+    }
+    .wt-questions li::before {
+      content: '?';
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--wt-accent, var(--cr-purple));
+      background: var(--wt-accent-dim, var(--cr-purple-dim));
+      border-radius: 50%;
+      width: 17px; height: 17px;
+      display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 260px;
-      gap: 12px;
-      color: var(--cr-text-dim);
-      font-size: .9rem;
+      flex-shrink: 0;
+      margin-top: 1px;
     }
-    .suite-empty.visible { display: flex; }
-    .suite-empty svg { opacity: .35; }
 
-    /* Footer */
+    .wt-launch-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--wt-accent, var(--cr-purple));
+      text-decoration: none;
+      padding: 8px 0;
+      border-top: 1px solid var(--cr-border);
+      margin-top: auto;
+      transition: opacity var(--cr-transition);
+      cursor: pointer;
+      background: none;
+      border-left: none;
+      border-right: none;
+      border-bottom: none;
+      font-family: inherit;
+      width: 100%;
+    }
+    .wt-launch-btn:hover { opacity: .75; }
+
+    /* ── Footer ── */
     .suite-footer {
       border-top: 1px solid var(--cr-border);
       padding: 16px 24px;
@@ -270,17 +459,31 @@
       color: var(--cr-text-dim);
       text-decoration: none;
       font-weight: 500;
-      display: flex; align-items: center; gap: 5px;
       transition: color var(--cr-transition);
     }
     .suite-footer a:hover { color: var(--cr-purple-light); }
 
-    /* Responsive */
-    @media (max-width: 640px) {
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .split-panel { flex-direction: column; height: auto; }
+      .split-sidebar {
+        width: 100%;
+        flex-direction: row;
+        overflow-x: auto;
+        overflow-y: hidden;
+        border-right: none;
+        border-bottom: 1px solid var(--cr-border);
+        padding: 8px 0;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+      .sidebar-section { display: inline-flex; flex-direction: column; }
+      .sidebar-section-label { padding: 4px 12px 2px; }
+      .sidebar-suite-label { display: none; }
+      .split-content { height: 70vh; }
       .suite-header-inner { padding: 0 16px; }
-      .suite-search-wrap { width: 160px; }
-      .suite-main { padding: 20px 16px 60px; }
-      .suite-cards { grid-template-columns: 1fr; }
+      .which-tool-section { padding: 40px 16px 60px; }
+      .wt-cards { grid-template-columns: 1fr; }
     }
   </style>
   <!-- Google tag (gtag.js) -->
@@ -303,278 +506,268 @@
           <span class="suite-brand-sub">Creator &amp; Ecommerce Tools</span>
         </div>
       </a>
-      <div style="display:flex;align-items:center;gap:12px;">
-        <div class="suite-search-wrap">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <input id="suiteSearch" type="search" placeholder="Search tools…" autocomplete="off" />
-        </div>
-        <a href="contact.html" style="font-size:.8rem;font-weight:700;color:var(--cr-purple-light);text-decoration:none;white-space:nowrap;padding:7px 16px;border:1.5px solid var(--cr-border-glow);border-radius:8px;transition:all var(--cr-transition);" onmouseover="this.style.background='var(--cr-purple-dim)'" onmouseout="this.style.background='transparent'">Get Started →</a>
-      </div>
+      <nav class="suite-nav">
+        <a href="index.html">Home</a>
+        <a href="services.html">Platforms &amp; Pricing</a>
+        <a href="tools-suite.html" class="active">Tools Suite</a>
+        <a href="contact.html" class="suite-nav-cta">Get Started</a>
+      </nav>
     </div>
   </header>
 
-  <!-- ── Nav breadcrumb banner ── -->
-  <div style="background:var(--cr-surface);border-bottom:1px solid var(--cr-border);padding:8px 24px;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--cr-text-dim);">
-    <a href="index.html" style="color:var(--cr-text-dim);text-decoration:none;transition:color var(--cr-transition);" onmouseover="this.style.color='var(--cr-purple-light)'" onmouseout="this.style.color='var(--cr-text-dim)'">Northwind Pulse™</a>
+  <!-- ── Breadcrumb ── -->
+  <div class="suite-breadcrumb">
+    <a href="index.html">Northwind Pulse™</a>
     <span>›</span>
-    <span style="color:var(--cr-text-muted);">Dashboard Library</span>
-    <span style="margin-left:auto;display:flex;align-items:center;gap:6px;">
-      <a href="tools.html" style="color:var(--cr-text-dim);text-decoration:none;font-size:11px;transition:color var(--cr-transition);" onmouseover="this.style.color='var(--cr-purple-light)'" onmouseout="this.style.color='var(--cr-text-dim)'">← Dashboards</a>
-    </span>
+    <span style="color:var(--cr-text-muted);">Tools Suite</span>
   </div>
 
-  <!-- ── Main ── -->
-  <main class="suite-main" id="suiteMain">
+  <!-- ── Split panel ── -->
+  <div class="split-panel">
 
-    <!-- Shopify -->
-    <div class="suite-section-heading" data-section="shopify">
-      <div class="suite-section-dot" style="background:#96bf48;"></div>
-      Shopify
-    </div>
-    <div class="suite-cards" id="cards-shopify">
+    <!-- Left sidebar -->
+    <nav class="split-sidebar" aria-label="Dashboard navigation">
+      <div class="sidebar-suite-label">Creator &amp; Ecommerce Suite</div>
 
-      <a href="https://shopify-rev-tools.northwind-consulting.com" target="_blank" rel="noopener noreferrer" class="suite-card" style="--card-accent:#96bf48;--card-accent-dim:rgba(150,191,72,.12);"
-         data-title="revenue sales performance" data-tags="revenue orders aov net sales shopify forecast goals">
-        <div class="suite-card-icon">🛍️</div>
-        <div class="suite-card-body">
-          <div class="suite-card-cat">Shopify</div>
-          <div class="suite-card-title">Revenue &amp; Sales Performance</div>
-          <div class="suite-card-desc">Gross revenue, net sales, orders, and AOV over time. Filter by order status, traffic source, and date range. Includes goal tracking and linear forecast.</div>
+      <!-- Shopify -->
+      <div class="sidebar-section">
+        <div class="sidebar-section-label">
+          <span class="sidebar-dot" style="background:#96bf48;"></span>
+          Shopify
         </div>
-        <div class="suite-card-tags">
-          <span class="suite-card-tag">Revenue</span>
-          <span class="suite-card-tag">Orders</span>
-          <span class="suite-card-tag">AOV</span>
-          <span class="suite-card-tag">Forecasting</span>
-          <span class="suite-card-tag">Goals</span>
-        </div>
-        <div class="suite-card-footer">
-          Open dashboard
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </div>
-      </a>
+        <button class="sidebar-item active" data-id="shopify-rev" onclick="loadDash('shopify-rev')">
+          <span class="sidebar-item-icon">🛍️</span>
+          <span class="sidebar-item-label">Revenue &amp; Sales</span>
+        </button>
+        <button class="sidebar-item dim" data-id="shopify-product" onclick="loadDash('shopify-product')">
+          <span class="sidebar-item-icon">📦</span>
+          <span class="sidebar-item-label">Product Performance</span>
+          <span class="cs-tag">Soon</span>
+        </button>
+        <button class="sidebar-item dim" data-id="shopify-customers" onclick="loadDash('shopify-customers')">
+          <span class="sidebar-item-icon">👥</span>
+          <span class="sidebar-item-label">Customer Analytics</span>
+          <span class="cs-tag">Soon</span>
+        </button>
+      </div>
 
-      <a href="contact.html" class="suite-card coming-soon" style="--card-accent:#96bf48;--card-accent-dim:rgba(150,191,72,.1);"
-         data-title="product performance inventory shopify" data-tags="products inventory shopify">
-        <span class="suite-coming-badge">Coming Soon</span>
-        <div class="suite-card-icon">📦</div>
-        <div class="suite-card-body">
-          <div class="suite-card-cat">Shopify</div>
-          <div class="suite-card-title">Product Performance</div>
-          <div class="suite-card-desc">Top products by revenue, units sold, and margin. Inventory tracking and reorder alerts.</div>
+      <!-- Instagram -->
+      <div class="sidebar-section">
+        <div class="sidebar-section-label">
+          <span class="sidebar-dot" style="background:#e1306c;"></span>
+          Instagram
         </div>
-        <div class="suite-card-tags">
-          <span class="suite-card-tag">Products</span>
-          <span class="suite-card-tag">Inventory</span>
-          <span class="suite-card-tag">Margin</span>
-        </div>
-        <div class="suite-card-footer">Coming soon</div>
-      </a>
+        <button class="sidebar-item" data-id="ig-rev" onclick="loadDash('ig-rev')">
+          <span class="sidebar-item-icon">📸</span>
+          <span class="sidebar-item-label">Revenue &amp; Conversion</span>
+        </button>
+        <button class="sidebar-item dim" data-id="ig-content" onclick="loadDash('ig-content')">
+          <span class="sidebar-item-icon">🎞️</span>
+          <span class="sidebar-item-label">Content Performance</span>
+          <span class="cs-tag">Soon</span>
+        </button>
+        <button class="sidebar-item dim" data-id="ig-audience" onclick="loadDash('ig-audience')">
+          <span class="sidebar-item-icon">📈</span>
+          <span class="sidebar-item-label">Audience Growth</span>
+          <span class="cs-tag">Soon</span>
+        </button>
+      </div>
 
-      <a href="contact.html" class="suite-card coming-soon" style="--card-accent:#96bf48;--card-accent-dim:rgba(150,191,72,.1);"
-         data-title="customer analytics ltv shopify" data-tags="customers ltv retention shopify">
-        <span class="suite-coming-badge">Coming Soon</span>
-        <div class="suite-card-icon">👥</div>
-        <div class="suite-card-body">
-          <div class="suite-card-cat">Shopify</div>
-          <div class="suite-card-title">Customer Analytics</div>
-          <div class="suite-card-desc">New vs returning customers, LTV cohorts, and purchase frequency breakdowns.</div>
+      <!-- TikTok -->
+      <div class="sidebar-section">
+        <div class="sidebar-section-label">
+          <span class="sidebar-dot" style="background:#ee1d52;"></span>
+          TikTok
         </div>
-        <div class="suite-card-tags">
-          <span class="suite-card-tag">LTV</span>
-          <span class="suite-card-tag">Retention</span>
-          <span class="suite-card-tag">Cohorts</span>
-        </div>
-        <div class="suite-card-footer">Coming soon</div>
-      </a>
+        <button class="sidebar-item dim" data-id="tt-content" onclick="loadDash('tt-content')">
+          <span class="sidebar-item-icon">🎵</span>
+          <span class="sidebar-item-label">Content Performance</span>
+          <span class="cs-tag">Soon</span>
+        </button>
+        <button class="sidebar-item dim" data-id="tt-audience" onclick="loadDash('tt-audience')">
+          <span class="sidebar-item-icon">🚀</span>
+          <span class="sidebar-item-label">Audience Growth</span>
+          <span class="cs-tag">Soon</span>
+        </button>
+      </div>
 
-    </div>
+      <!-- Cross-Platform -->
+      <div class="sidebar-section">
+        <div class="sidebar-section-label">
+          <span class="sidebar-dot" style="background:#a855f7;"></span>
+          Cross-Platform
+        </div>
+        <button class="sidebar-item" data-id="xplat" onclick="loadDash('xplat')">
+          <span class="sidebar-item-icon">🔀</span>
+          <span class="sidebar-item-label">Attribution</span>
+        </button>
+        <button class="sidebar-item dim" data-id="xplat-roi" onclick="loadDash('xplat-roi')">
+          <span class="sidebar-item-icon">🎯</span>
+          <span class="sidebar-item-label">Campaign ROI</span>
+          <span class="cs-tag">Soon</span>
+        </button>
+        <button class="sidebar-item dim" data-id="xplat-intel" onclick="loadDash('xplat-intel')">
+          <span class="sidebar-item-icon">🧠</span>
+          <span class="sidebar-item-label">Commerce Intelligence</span>
+          <span class="cs-tag">Soon</span>
+        </button>
+      </div>
+    </nav>
 
-    <!-- Instagram -->
-    <div class="suite-section-heading" data-section="instagram">
-      <div class="suite-section-dot" style="background:#e1306c;"></div>
-      Instagram
-    </div>
-    <div class="suite-cards" id="cards-instagram">
-
-      <a href="https://ig-rev-conversion-tools.northwind-consulting.com" target="_blank" rel="noopener noreferrer" class="suite-card" style="--card-accent:#e1306c;--card-accent-dim:rgba(225,48,108,.1);"
-         data-title="revenue conversion instagram sessions cvr" data-tags="instagram sessions cvr revenue conversion forecast goals">
-        <div class="suite-card-icon">📸</div>
-        <div class="suite-card-body">
-          <div class="suite-card-cat">Instagram</div>
-          <div class="suite-card-title">Revenue &amp; Conversion</div>
-          <div class="suite-card-desc">Sessions, CVR, and revenue driven by Instagram. Filter by campaign and content type. Includes conversion funnel, monthly trends, and goal pacing.</div>
-        </div>
-        <div class="suite-card-tags">
-          <span class="suite-card-tag">Sessions</span>
-          <span class="suite-card-tag">CVR</span>
-          <span class="suite-card-tag">Revenue</span>
-          <span class="suite-card-tag">Forecasting</span>
-          <span class="suite-card-tag">Goals</span>
-        </div>
-        <div class="suite-card-footer">
-          Open dashboard
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </div>
-      </a>
-
-      <a href="contact.html" class="suite-card coming-soon" style="--card-accent:#e1306c;--card-accent-dim:rgba(225,48,108,.08);"
-         data-title="instagram content performance engagement posts reels" data-tags="instagram content reels engagement">
-        <span class="suite-coming-badge">Coming Soon</span>
-        <div class="suite-card-icon">🎞️</div>
-        <div class="suite-card-body">
-          <div class="suite-card-cat">Instagram</div>
-          <div class="suite-card-title">Content Performance</div>
-          <div class="suite-card-desc">Post and Reel performance by reach, engagement rate, and saves. Identify your top-converting content types.</div>
-        </div>
-        <div class="suite-card-tags">
-          <span class="suite-card-tag">Reels</span>
-          <span class="suite-card-tag">Engagement</span>
-          <span class="suite-card-tag">Reach</span>
-        </div>
-        <div class="suite-card-footer">Coming soon</div>
-      </a>
-
-      <a href="contact.html" class="suite-card coming-soon" style="--card-accent:#e1306c;--card-accent-dim:rgba(225,48,108,.08);"
-         data-title="instagram audience growth followers" data-tags="instagram audience followers growth">
-        <span class="suite-coming-badge">Coming Soon</span>
-        <div class="suite-card-icon">📈</div>
-        <div class="suite-card-body">
-          <div class="suite-card-cat">Instagram</div>
-          <div class="suite-card-title">Audience Growth</div>
-          <div class="suite-card-desc">Follower growth over time, demographic breakdown, and engagement rate trends.</div>
-        </div>
-        <div class="suite-card-tags">
-          <span class="suite-card-tag">Followers</span>
-          <span class="suite-card-tag">Demographics</span>
-          <span class="suite-card-tag">Growth</span>
-        </div>
-        <div class="suite-card-footer">Coming soon</div>
-      </a>
-
+    <!-- Right: content pane -->
+    <div class="split-content">
+      <div class="split-content-bar">
+        <span class="split-content-title" id="dashTitle">Revenue &amp; Sales Performance</span>
+        <a class="split-content-link" id="dashOpenLink" href="https://shopify-rev-tools.northwind-consulting.com" target="_blank" rel="noopener noreferrer">
+          Open in new tab
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+      </div>
+      <iframe id="dashFrame"
+              src="https://shopify-rev-tools.northwind-consulting.com"
+              title="Revenue &amp; Sales Performance"
+              allow="fullscreen"
+              referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+      <div class="dash-placeholder" id="dashPlaceholder" style="display:none;">
+        <div class="dash-placeholder-icon">🚧</div>
+        <div class="dash-placeholder-title" id="dashPlaceholderTitle"></div>
+        <div class="dash-placeholder-sub">This dashboard is on the way. Get notified when it launches.</div>
+        <a href="contact.html" class="dash-placeholder-cta">Notify me when it's ready →</a>
+      </div>
     </div>
 
-    <!-- TikTok -->
-    <div class="suite-section-heading" data-section="tiktok">
-      <div class="suite-section-dot" style="background:#ee1d52;"></div>
-      TikTok
-    </div>
-    <div class="suite-cards" id="cards-tiktok">
+  </div>
 
-      <a href="contact.html" class="suite-card coming-soon" style="--card-accent:#ee1d52;--card-accent-dim:rgba(238,29,82,.1);"
-         data-title="tiktok content performance videos" data-tags="tiktok videos views engagement content">
-        <span class="suite-coming-badge">Coming Soon</span>
-        <div class="suite-card-icon">🎵</div>
-        <div class="suite-card-body">
-          <div class="suite-card-cat">TikTok</div>
-          <div class="suite-card-title">Content Performance</div>
-          <div class="suite-card-desc">Video views, watch time, shares, and profile visits per post. Surface your best-performing content formats.</div>
-        </div>
-        <div class="suite-card-tags">
-          <span class="suite-card-tag">Videos</span>
-          <span class="suite-card-tag">Views</span>
-          <span class="suite-card-tag">Watch Time</span>
-        </div>
-        <div class="suite-card-footer">Coming soon</div>
-      </a>
-
-      <a href="contact.html" class="suite-card coming-soon" style="--card-accent:#ee1d52;--card-accent-dim:rgba(238,29,82,.1);"
-         data-title="tiktok audience growth followers" data-tags="tiktok audience followers growth">
-        <span class="suite-coming-badge">Coming Soon</span>
-        <div class="suite-card-icon">🚀</div>
-        <div class="suite-card-body">
-          <div class="suite-card-cat">TikTok</div>
-          <div class="suite-card-title">Audience Growth</div>
-          <div class="suite-card-desc">Follower velocity, demographic breakdown, and engagement benchmarks over time.</div>
-        </div>
-        <div class="suite-card-tags">
-          <span class="suite-card-tag">Followers</span>
-          <span class="suite-card-tag">Demographics</span>
-          <span class="suite-card-tag">Velocity</span>
-        </div>
-        <div class="suite-card-footer">Coming soon</div>
-      </a>
-
+  <!-- ── Which tool should I choose? ── -->
+  <section class="which-tool-section">
+    <div class="which-tool-header">
+      <div class="which-tool-tag">Tool Guide</div>
+      <h2>Which tool should I choose?</h2>
+      <p>Each dashboard is built for a specific question. Here's what data each one uses and what it helps you answer.</p>
     </div>
 
-    <!-- Cross-Platform -->
-    <div class="suite-section-heading" data-section="cross-platform">
-      <div class="suite-section-dot" style="background:#a855f7;"></div>
-      Cross-Platform
+    <div class="wt-cards">
+
+      <!-- Shopify: Revenue & Sales -->
+      <div class="wt-card" style="--wt-accent:#96bf48;--wt-accent-dim:rgba(150,191,72,.12);">
+        <div class="wt-card-head">
+          <div class="wt-card-icon">🛍️</div>
+          <div>
+            <div class="wt-card-platform">Shopify</div>
+            <div class="wt-card-name">Revenue &amp; Sales Performance</div>
+          </div>
+        </div>
+        <div>
+          <div class="wt-block-label">Data fields used</div>
+          <div class="wt-fields">
+            <span class="wt-field">Gross Revenue</span>
+            <span class="wt-field">Net Sales</span>
+            <span class="wt-field">Orders</span>
+            <span class="wt-field">AOV</span>
+            <span class="wt-field">Discounts</span>
+            <span class="wt-field">Sales Channel</span>
+            <span class="wt-field">UTM Source</span>
+            <span class="wt-field">UTM Campaign</span>
+            <span class="wt-field">Order Status</span>
+          </div>
+        </div>
+        <div>
+          <div class="wt-block-label">Questions this answers</div>
+          <ul class="wt-questions">
+            <li>Which months drove the most revenue?</li>
+            <li>What's my average order value trending?</li>
+            <li>How much revenue is coming from Instagram vs. Google?</li>
+            <li>Are my discount codes cutting into net revenue?</li>
+            <li>Am I on pace to hit my monthly sales goal?</li>
+          </ul>
+        </div>
+        <button class="wt-launch-btn" onclick="loadDashAndScroll('shopify-rev')">
+          Launch this dashboard →
+        </button>
+      </div>
+
+      <!-- Instagram: Revenue & Conversion -->
+      <div class="wt-card" style="--wt-accent:#e1306c;--wt-accent-dim:rgba(225,48,108,.1);">
+        <div class="wt-card-head">
+          <div class="wt-card-icon">📸</div>
+          <div>
+            <div class="wt-card-platform">Instagram (via GA4)</div>
+            <div class="wt-card-name">Revenue &amp; Conversion</div>
+          </div>
+        </div>
+        <div>
+          <div class="wt-block-label">Data fields used</div>
+          <div class="wt-fields">
+            <span class="wt-field">Sessions</span>
+            <span class="wt-field">Conversions</span>
+            <span class="wt-field">Revenue</span>
+            <span class="wt-field">Conversion Rate</span>
+            <span class="wt-field">Bounce Rate</span>
+            <span class="wt-field">Campaign</span>
+            <span class="wt-field">UTM Content</span>
+          </div>
+        </div>
+        <div>
+          <div class="wt-block-label">Questions this answers</div>
+          <ul class="wt-questions">
+            <li>Is my Instagram traffic actually converting?</li>
+            <li>Which campaigns drive the most sessions and revenue?</li>
+            <li>What's my bounce rate from social traffic?</li>
+            <li>Am I hitting my monthly revenue goal from Instagram?</li>
+            <li>Which content type brings in the most sessions?</li>
+          </ul>
+        </div>
+        <button class="wt-launch-btn" onclick="loadDashAndScroll('ig-rev')">
+          Launch this dashboard →
+        </button>
+      </div>
+
+      <!-- Cross-Platform Attribution -->
+      <div class="wt-card" style="--wt-accent:#a855f7;--wt-accent-dim:rgba(168,85,247,.12);">
+        <div class="wt-card-head">
+          <div class="wt-card-icon">🔀</div>
+          <div>
+            <div class="wt-card-platform">Cross-Platform</div>
+            <div class="wt-card-name">Cross-Platform Attribution</div>
+          </div>
+        </div>
+        <div>
+          <div class="wt-block-label">Data fields used</div>
+          <div class="wt-fields">
+            <span class="wt-field">Sessions</span>
+            <span class="wt-field">Revenue</span>
+            <span class="wt-field">CVR</span>
+            <span class="wt-field">ROAS</span>
+            <span class="wt-field">Platform</span>
+            <span class="wt-field">Campaign</span>
+            <span class="wt-field">Bounce Rate</span>
+          </div>
+        </div>
+        <div>
+          <div class="wt-block-label">Questions this answers</div>
+          <ul class="wt-questions">
+            <li>Which platform drives the most revenue overall?</li>
+            <li>Where should I focus my ad spend?</li>
+            <li>What's my blended conversion rate across all channels?</li>
+            <li>How does Instagram compare to TikTok for driving sales?</li>
+            <li>Which campaign is performing best across platforms?</li>
+          </ul>
+        </div>
+        <button class="wt-launch-btn" onclick="loadDashAndScroll('xplat')">
+          Launch this dashboard →
+        </button>
+      </div>
+
     </div>
-    <div class="suite-cards" id="cards-xplat">
-
-      <a href="https://xplat-tools.northwind-consulting.com" target="_blank" rel="noopener noreferrer" class="suite-card" style="--card-accent:#a855f7;--card-accent-dim:rgba(168,85,247,.12);"
-         data-title="cross platform attribution revenue multi channel roas" data-tags="cross-platform attribution roas revenue sessions cvr forecast goals">
-        <div class="suite-card-icon">🔀</div>
-        <div class="suite-card-body">
-          <div class="suite-card-cat">Cross-Platform</div>
-          <div class="suite-card-title">Cross-Platform Attribution</div>
-          <div class="suite-card-desc">Stacked revenue by channel, blended CVR and ROAS, full-funnel overview, and forecasting across your entire traffic mix.</div>
-        </div>
-        <div class="suite-card-tags">
-          <span class="suite-card-tag">Attribution</span>
-          <span class="suite-card-tag">ROAS</span>
-          <span class="suite-card-tag">Multi-Channel</span>
-          <span class="suite-card-tag">Forecasting</span>
-          <span class="suite-card-tag">Goals</span>
-        </div>
-        <div class="suite-card-footer">
-          Open dashboard
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </div>
-      </a>
-
-      <a href="contact.html" class="suite-card coming-soon" style="--card-accent:#a855f7;--card-accent-dim:rgba(168,85,247,.1);"
-         data-title="campaign roi performance paid social" data-tags="campaign roi paid social performance">
-        <span class="suite-coming-badge">Coming Soon</span>
-        <div class="suite-card-icon">🎯</div>
-        <div class="suite-card-body">
-          <div class="suite-card-cat">Cross-Platform</div>
-          <div class="suite-card-title">Campaign ROI</div>
-          <div class="suite-card-desc">Compare campaign performance across platforms. Revenue per campaign, ROAS breakdowns, and spend efficiency scoring.</div>
-        </div>
-        <div class="suite-card-tags">
-          <span class="suite-card-tag">Campaigns</span>
-          <span class="suite-card-tag">ROAS</span>
-          <span class="suite-card-tag">Paid Social</span>
-        </div>
-        <div class="suite-card-footer">Coming soon</div>
-      </a>
-
-      <a href="contact.html" class="suite-card coming-soon" style="--card-accent:#06b6d4;--card-accent-dim:rgba(6,182,212,.1);"
-         data-title="creator commerce intelligence funnel full" data-tags="funnel full-funnel creator commerce intelligence">
-        <span class="suite-coming-badge">Coming Soon</span>
-        <div class="suite-card-icon">🧠</div>
-        <div class="suite-card-body">
-          <div class="suite-card-cat">Cross-Platform</div>
-          <div class="suite-card-title">Creator Commerce Intelligence</div>
-          <div class="suite-card-desc">End-to-end creator funnel: from content impressions to revenue. Attribution by content type, platform, and campaign.</div>
-        </div>
-        <div class="suite-card-tags">
-          <span class="suite-card-tag">Full Funnel</span>
-          <span class="suite-card-tag">Creator</span>
-          <span class="suite-card-tag">Intelligence</span>
-        </div>
-        <div class="suite-card-footer">Coming soon</div>
-      </a>
-
-    </div>
-
-    <!-- Empty state -->
-    <div class="suite-empty" id="suiteEmpty">
-      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <span>No tools match your search.</span>
-    </div>
-
-  </main>
+  </section>
 
   <!-- ── Footer ── -->
   <footer class="suite-footer">
     <span>&copy; <span id="year"></span> Northwind Pulse™. All rights reserved.</span>
     <div style="display:flex;align-items:center;gap:20px;">
       <a href="index.html">Home</a>
-      <a href="tools.html">Dashboards</a>
+      <a href="services.html">Pricing</a>
       <a href="contact.html">Request a Custom Tool</a>
       <a href="terms.html">Terms of Service</a>
     </div>
@@ -583,35 +776,54 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Search
-    const searchInput = document.getElementById('suiteSearch');
-    const emptyState  = document.getElementById('suiteEmpty');
+    const DASHBOARDS = {
+      'shopify-rev':      { title: 'Revenue &amp; Sales Performance',  url: 'https://shopify-rev-tools.northwind-consulting.com',  live: true },
+      'shopify-product':  { title: 'Product Performance',              url: null,                                                  live: false },
+      'shopify-customers':{ title: 'Customer Analytics',               url: null,                                                  live: false },
+      'ig-rev':           { title: 'Revenue &amp; Conversion',         url: 'https://ig-rev-conversion-tools.northwind-consulting.com', live: true },
+      'ig-content':       { title: 'Content Performance',              url: null,                                                  live: false },
+      'ig-audience':      { title: 'Audience Growth',                  url: null,                                                  live: false },
+      'tt-content':       { title: 'TikTok Content Performance',       url: null,                                                  live: false },
+      'tt-audience':      { title: 'TikTok Audience Growth',           url: null,                                                  live: false },
+      'xplat':            { title: 'Cross-Platform Attribution',       url: 'https://xplat-tools.northwind-consulting.com',        live: true },
+      'xplat-roi':        { title: 'Campaign ROI',                     url: null,                                                  live: false },
+      'xplat-intel':      { title: 'Creator Commerce Intelligence',    url: null,                                                  live: false },
+    };
 
-    searchInput.addEventListener('input', () => {
-      const q = searchInput.value.toLowerCase().trim();
-      const cards = document.querySelectorAll('.suite-card:not(.coming-soon)');
-      const allCards = document.querySelectorAll('.suite-card');
-      let visibleCount = 0;
+    function loadDash(id) {
+      const dash = DASHBOARDS[id];
+      if (!dash) return;
 
-      allCards.forEach(card => {
-        const title = card.dataset.title || '';
-        const tags  = card.dataset.tags  || '';
-        const match = !q || title.includes(q) || tags.includes(q);
-        card.style.display = match ? '' : 'none';
-        if (match && !card.classList.contains('coming-soon')) visibleCount++;
-      });
+      // Update sidebar active state
+      document.querySelectorAll('.sidebar-item').forEach(el => el.classList.remove('active'));
+      const btn = document.querySelector(`.sidebar-item[data-id="${id}"]`);
+      if (btn) btn.classList.add('active');
 
-      // Hide section headings + grid if no live cards visible in that section
-      document.querySelectorAll('.suite-section-heading').forEach(heading => {
-        const section = heading.dataset.section;
-        const grid = document.getElementById('cards-' + section.replace('-',''));
-        const visibleInSection = grid ? [...grid.querySelectorAll('.suite-card')].some(c => c.style.display !== 'none') : false;
-        heading.style.display = visibleInSection ? '' : 'none';
-        if (grid) grid.style.display = visibleInSection ? '' : 'none';
-      });
+      // Update top bar
+      document.getElementById('dashTitle').innerHTML = dash.title;
 
-      emptyState.classList.toggle('visible', q.length > 0 && visibleCount === 0);
-    });
+      const frame      = document.getElementById('dashFrame');
+      const placeholder = document.getElementById('dashPlaceholder');
+      const openLink   = document.getElementById('dashOpenLink');
+
+      if (dash.live) {
+        frame.src = dash.url;
+        frame.style.display = '';
+        placeholder.style.display = 'none';
+        openLink.href = dash.url;
+        openLink.style.display = '';
+      } else {
+        frame.style.display = 'none';
+        placeholder.style.display = '';
+        document.getElementById('dashPlaceholderTitle').innerHTML = dash.title;
+        openLink.style.display = 'none';
+      }
+    }
+
+    function loadDashAndScroll(id) {
+      loadDash(id);
+      document.querySelector('.split-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   </script>
 </body>
 </html>
