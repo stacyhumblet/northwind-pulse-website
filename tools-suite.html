@@ -131,9 +131,6 @@
     body.suite-light .sidebar-item:hover:not(.dim) { background: rgba(0,0,0,.04); color: #111827; }
     body.suite-light .sidebar-item.active { background: rgba(124,58,237,.09); color: #6d28d9; border-left-color: #7c3aed; }
     body.suite-light .cs-tag { background: rgba(0,0,0,.05); border-color: rgba(0,0,0,.1); color: #9ca3af; }
-    body.suite-light .sidebar-footer { border-top-color: rgba(0,0,0,.1); }
-    body.suite-light .sidebar-mode-btn { border-color: rgba(0,0,0,.15); color: #4b5563; }
-    body.suite-light .sidebar-mode-btn:hover { border-color: rgba(0,0,0,.3); color: #111827; }
 
     /* ── Sidebar ── */
     .split-sidebar {
@@ -203,31 +200,6 @@
     }
     .sidebar-item-icon { font-size: 14px; flex-shrink: 0; }
     .sidebar-item-label { flex: 1; }
-
-    /* Sidebar footer with mode toggle */
-    .sidebar-footer {
-      margin-top: auto;
-      padding: 12px 12px 10px;
-      border-top: 1px solid var(--cr-border);
-    }
-    .sidebar-mode-btn {
-      width: 100%;
-      padding: 7px 12px;
-      background: none;
-      border: 1px solid var(--cr-border);
-      border-radius: 8px;
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--cr-text-dim);
-      cursor: pointer;
-      font-family: inherit;
-      text-align: left;
-      transition: border-color var(--cr-transition), color var(--cr-transition);
-      display: flex;
-      align-items: center;
-      gap: 7px;
-    }
-    .sidebar-mode-btn:hover { border-color: var(--cr-border-glow); color: var(--cr-text); }
 
     .cs-tag {
       font-size: 8.5px;
@@ -634,12 +606,6 @@
         </button>
       </div>
 
-      <!-- Mode toggle -->
-      <div class="sidebar-footer">
-        <button class="sidebar-mode-btn" id="modeBtn" onclick="toggleSuiteMode()">
-          ☀️ <span id="modeBtnLabel">Light mode</span>
-        </button>
-      </div>
     </nav>
 
     <!-- Right: content pane -->
@@ -814,13 +780,12 @@
       }
     }
 
-    function toggleSuiteMode() {
-      suiteMode = suiteMode === 'dark' ? 'light' : 'dark';
+    // Listen for light/dark toggle from inside the dashboard iframe
+    window.addEventListener('message', (e) => {
+      if (!e.data || e.data.type !== 'nwp-sidebar-theme') return;
+      suiteMode = e.data.mode || 'dark';
       document.body.classList.toggle('suite-light', suiteMode === 'light');
-      document.getElementById('modeBtnLabel').textContent = suiteMode === 'light' ? 'Dark mode' : 'Light mode';
-      document.getElementById('modeBtn').firstChild.textContent = suiteMode === 'light' ? '🌙 ' : '☀️ ';
-      broadcastTheme();
-    }
+    });
 
     // Send theme once the iframe finishes loading
     document.getElementById('dashFrame').addEventListener('load', () => {
