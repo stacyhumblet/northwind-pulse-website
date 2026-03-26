@@ -180,6 +180,28 @@
       margin-top: 4px; align-self: flex-start;
     }
     .live-dash-card-btn:hover { opacity: .85; }
+    .live-dash-questions {
+      list-style: none;
+      margin: 0; padding: 0;
+      display: flex; flex-direction: column; gap: 6px;
+      border-top: 1px solid var(--cr-border);
+      padding-top: 14px;
+    }
+    .live-dash-questions-label {
+      font-size: .67rem; font-weight: 700; letter-spacing: .6px;
+      text-transform: uppercase; color: var(--cr-text-dim);
+      margin-bottom: 2px;
+    }
+    .live-dash-questions li {
+      font-size: .78rem; color: var(--cr-text-muted);
+      padding-left: 16px; position: relative; line-height: 1.4;
+    }
+    .live-dash-questions li::before {
+      content: '?';
+      position: absolute; left: 0;
+      font-size: .68rem; font-weight: 800;
+      color: var(--cr-purple-light); opacity: .7;
+    }
     /* Request custom tool */
     .request-custom-wrap {
       background: linear-gradient(135deg, rgba(168,85,247,.1) 0%, rgba(6,182,212,.07) 100%);
@@ -418,14 +440,23 @@
             <div class="live-dash-card-title">Revenue &amp; Sales Performance</div>
             <div style="font-size:.72rem;color:var(--cr-text-dim);margin-top:3px;font-weight:600;letter-spacing:.4px;">Shopify</div>
           </div>
-          <p class="live-dash-card-desc">Track gross revenue, net sales, orders, and AOV over time. Filter by order status, traffic source, and time period. Includes forecasting and goal tracking.</p>
+          <p class="live-dash-card-desc">Track gross revenue, net sales, orders, and AOV over time. Filter by marketing channel, sales origin, order status, and time period. Includes goal tracking and margin estimation.</p>
+          <div class="live-dash-questions">
+            <div class="live-dash-questions-label">Questions this answers</div>
+            <li>Which month was my highest revenue month?</li>
+            <li>Am I on track to hit my monthly sales goal?</li>
+            <li>Which marketing channel sends my highest-value buyers?</li>
+            <li>How much revenue am I giving away in discounts?</li>
+            <li>Are more of my orders coming from web, in-person, or the app?</li>
+          </div>
           <div class="live-dash-card-tags">
             <span class="live-dash-card-tag">Revenue</span>
             <span class="live-dash-card-tag">Orders</span>
             <span class="live-dash-card-tag">AOV</span>
-            <span class="live-dash-card-tag">Forecast</span>
+            <span class="live-dash-card-tag">Channels</span>
+            <span class="live-dash-card-tag">Margin</span>
           </div>
-          <a href="https://script.google.com/macros/s/AKfycbyRJF2RWQROhjMDEQEyATTjgQ1jlBUbTRcDJ_132hjYOokSlTdLBN7ZuW4AuS8BkD3g/exec" target="_blank" rel="noopener noreferrer" class="live-dash-card-btn" style="background:rgba(150,191,72,.15);color:#96bf48;border:1px solid rgba(150,191,72,.3);">View Live →</a>
+          <a href="https://shopify-rev-tools.northwind-consulting.com" target="_blank" rel="noopener noreferrer" class="live-dash-card-btn" style="background:rgba(150,191,72,.15);color:#96bf48;border:1px solid rgba(150,191,72,.3);">View Live →</a>
         </div>
 
         <div class="live-dash-card">
@@ -434,28 +465,46 @@
             <div class="live-dash-card-title">Revenue &amp; Conversion</div>
             <div style="font-size:.72rem;color:var(--cr-text-dim);margin-top:3px;font-weight:600;letter-spacing:.4px;">Instagram</div>
           </div>
-          <p class="live-dash-card-desc">Measure sessions, CVR, and revenue driven by Instagram. Break down by campaign and content type. Includes conversion funnel, monthly trends, and pacing against goals.</p>
+          <p class="live-dash-card-desc">Measure sessions, conversion rate, and revenue driven by Instagram traffic. Break down by campaign and UTM content. Includes funnel view, monthly trends, and bounce rate tracking.</p>
+          <div class="live-dash-questions">
+            <div class="live-dash-questions-label">Questions this answers</div>
+            <li>How much revenue is Instagram actually driving to my store?</li>
+            <li>Which campaign brought in the most traffic that actually bought?</li>
+            <li>What percentage of my Instagram visitors convert to customers?</li>
+            <li>Which content piece drove the most site sessions this month?</li>
+            <li>Is my bounce rate getting better or worse over time?</li>
+          </div>
           <div class="live-dash-card-tags">
             <span class="live-dash-card-tag">Sessions</span>
             <span class="live-dash-card-tag">CVR</span>
             <span class="live-dash-card-tag">Revenue</span>
-            <span class="live-dash-card-tag">Forecast</span>
+            <span class="live-dash-card-tag">Campaigns</span>
+            <span class="live-dash-card-tag">Bounce Rate</span>
           </div>
-          <a href="https://script.google.com/macros/s/AKfycbyk9D2m4ZWuXVEGznBqsrzSS2lWJCoyebQ0uhICVpJk9AO9rFAr4ts_c20u2WuHPnQe0A/exec" target="_blank" rel="noopener noreferrer" class="live-dash-card-btn" style="background:rgba(225,48,108,.1);color:#e1306c;border:1px solid rgba(225,48,108,.25);">View Live →</a>
+          <a href="https://ig-rev-conversion-tools.northwind-consulting.com" target="_blank" rel="noopener noreferrer" class="live-dash-card-btn" style="background:rgba(225,48,108,.1);color:#e1306c;border:1px solid rgba(225,48,108,.25);">View Live →</a>
         </div>
 
         <div class="live-dash-card">
           <div class="live-dash-card-icon" style="background:rgba(168,85,247,.12);">🔀</div>
           <div>
             <div class="live-dash-card-title">Cross-Platform Attribution</div>
-            <div style="font-size:.72rem;color:var(--cr-text-dim);margin-top:3px;font-weight:600;letter-spacing:.4px;">Instagram · TikTok · YouTube · Paid</div>
+            <div style="font-size:.72rem;color:var(--cr-text-dim);margin-top:3px;font-weight:600;letter-spacing:.4px;">Instagram · TikTok · Google · Email · More</div>
           </div>
-          <p class="live-dash-card-desc">See which platforms are actually driving revenue. Stacked revenue by channel, blended CVR and ROAS, funnel overview, and trend forecasting across your full traffic mix.</p>
+          <p class="live-dash-card-desc">See which platforms are actually driving revenue. Stacked revenue by channel, CVR and AOV per platform, top campaigns across all sources, and trend view over time.</p>
+          <div class="live-dash-questions">
+            <div class="live-dash-questions-label">Questions this answers</div>
+            <li>Is TikTok or Instagram driving more revenue right now?</li>
+            <li>Which platform has the best conversion rate from visitor to buyer?</li>
+            <li>Where should I focus my content energy next month?</li>
+            <li>Which campaign generated the most revenue across all my channels?</li>
+            <li>How does my average order value compare by platform?</li>
+          </div>
           <div class="live-dash-card-tags">
             <span class="live-dash-card-tag">Multi-Channel</span>
-            <span class="live-dash-card-tag">ROAS</span>
             <span class="live-dash-card-tag">Attribution</span>
-            <span class="live-dash-card-tag">Forecast</span>
+            <span class="live-dash-card-tag">CVR</span>
+            <span class="live-dash-card-tag">AOV</span>
+            <span class="live-dash-card-tag">Campaigns</span>
           </div>
           <a href="https://xplat-tools.northwind-consulting.com" target="_blank" rel="noopener noreferrer" class="live-dash-card-btn" style="background:rgba(168,85,247,.12);color:#a855f7;border:1px solid rgba(168,85,247,.3);">View Live →</a>
         </div>
