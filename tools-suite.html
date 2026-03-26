@@ -93,87 +93,25 @@
     }
     .suite-nav-cta:hover { background: var(--cr-purple-dim); }
 
-    /* ── Preview controls bar ── */
-    .preview-controls {
-      background: var(--cr-surface);
-      border-bottom: 1px solid var(--cr-border);
-      padding: 8px 16px;
+    /* ── Guide strip ── */
+    .guide-strip {
+      background: rgba(168,85,247,.06);
+      border-bottom: 1px solid rgba(168,85,247,.14);
+      padding: 11px 24px;
       display: flex;
       align-items: center;
-      gap: 10px;
-      flex-shrink: 0;
-      flex-wrap: wrap;
-    }
-    .preview-controls-label {
-      font-size: 9.5px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: .9px;
-      color: var(--cr-text-dim);
-      white-space: nowrap;
-      margin-right: 2px;
-    }
-    .preview-pills {
-      display: flex;
-      gap: 5px;
-      flex-wrap: wrap;
-      flex: 1;
-    }
-    .preview-pill {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      background: transparent;
-      border: 1.5px solid var(--cr-border);
-      border-radius: 100px;
-      padding: 4px 11px;
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--cr-text-dim);
-      cursor: pointer;
-      font-family: inherit;
-      transition: border-color var(--cr-transition), color var(--cr-transition), background var(--cr-transition);
-      white-space: nowrap;
-    }
-    .preview-pill:hover { border-color: var(--cr-border-glow); color: var(--cr-text); }
-    .preview-pill.active {
-      border-color: var(--cr-purple);
-      color: var(--cr-text);
-      background: var(--cr-purple-dim);
-    }
-    .preview-swatch {
-      width: 10px; height: 10px;
-      border-radius: 50%;
+      justify-content: center;
       flex-shrink: 0;
     }
-    .preview-mode-btn {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      background: transparent;
-      border: 1.5px solid var(--cr-border);
-      border-radius: 100px;
-      padding: 4px 12px;
-      font-size: 11px;
+    .guide-strip-link {
+      font-size: 14px;
       font-weight: 600;
-      color: var(--cr-text-dim);
-      cursor: pointer;
-      font-family: inherit;
-      transition: border-color var(--cr-transition), color var(--cr-transition);
-      white-space: nowrap;
-      margin-left: 4px;
-    }
-    .preview-mode-btn:hover { border-color: var(--cr-border-glow); color: var(--cr-text); }
-    .preview-anchor {
-      margin-left: auto;
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--cr-text-dim);
+      color: var(--cr-purple-light);
       text-decoration: none;
-      white-space: nowrap;
-      transition: color var(--cr-transition);
+      letter-spacing: -.1px;
+      transition: opacity var(--cr-transition);
     }
-    .preview-anchor:hover { color: var(--cr-purple-light); }
+    .guide-strip-link:hover { opacity: .72; }
 
     /* ── Split panel ── */
     .split-panel {
@@ -182,6 +120,20 @@
       flex-shrink: 0;
       overflow: hidden;
     }
+
+    /* ── Sidebar light mode ── */
+    body.suite-light .split-sidebar {
+      background: #f3f4f8;
+      border-right-color: rgba(0,0,0,.1);
+    }
+    body.suite-light .sidebar-section-label { color: #9ca3af; }
+    body.suite-light .sidebar-item { color: #4b5563; }
+    body.suite-light .sidebar-item:hover:not(.dim) { background: rgba(0,0,0,.04); color: #111827; }
+    body.suite-light .sidebar-item.active { background: rgba(124,58,237,.09); color: #6d28d9; border-left-color: #7c3aed; }
+    body.suite-light .cs-tag { background: rgba(0,0,0,.05); border-color: rgba(0,0,0,.1); color: #9ca3af; }
+    body.suite-light .sidebar-footer { border-top-color: rgba(0,0,0,.1); }
+    body.suite-light .sidebar-mode-btn { border-color: rgba(0,0,0,.15); color: #4b5563; }
+    body.suite-light .sidebar-mode-btn:hover { border-color: rgba(0,0,0,.3); color: #111827; }
 
     /* ── Sidebar ── */
     .split-sidebar {
@@ -251,6 +203,32 @@
     }
     .sidebar-item-icon { font-size: 14px; flex-shrink: 0; }
     .sidebar-item-label { flex: 1; }
+
+    /* Sidebar footer with mode toggle */
+    .sidebar-footer {
+      margin-top: auto;
+      padding: 12px 12px 10px;
+      border-top: 1px solid var(--cr-border);
+    }
+    .sidebar-mode-btn {
+      width: 100%;
+      padding: 7px 12px;
+      background: none;
+      border: 1px solid var(--cr-border);
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--cr-text-dim);
+      cursor: pointer;
+      font-family: inherit;
+      text-align: left;
+      transition: border-color var(--cr-transition), color var(--cr-transition);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .sidebar-mode-btn:hover { border-color: var(--cr-border-glow); color: var(--cr-text); }
+
     .cs-tag {
       font-size: 8.5px;
       font-weight: 700;
@@ -561,31 +539,9 @@
     </div>
   </header>
 
-  <!-- ── Preview controls ── -->
-  <div class="preview-controls">
-    <span class="preview-controls-label">Color Theme</span>
-    <div class="preview-pills">
-      <button class="preview-pill active" data-scheme="creator" onclick="setSuiteScheme('creator',this)">
-        <span class="preview-swatch" style="background:linear-gradient(135deg,#a855f7,#06b6d4)"></span>Creator
-      </button>
-      <button class="preview-pill" data-scheme="slate" onclick="setSuiteScheme('slate',this)">
-        <span class="preview-swatch" style="background:linear-gradient(135deg,#78909c,#546e7a)"></span>Slate
-      </button>
-      <button class="preview-pill" data-scheme="ocean" onclick="setSuiteScheme('ocean',this)">
-        <span class="preview-swatch" style="background:linear-gradient(135deg,#0ea5e9,#22d3ee)"></span>Ocean
-      </button>
-      <button class="preview-pill" data-scheme="sunset" onclick="setSuiteScheme('sunset',this)">
-        <span class="preview-swatch" style="background:linear-gradient(135deg,#f97316,#ec4899)"></span>Sunset
-      </button>
-      <button class="preview-pill" data-scheme="forest" onclick="setSuiteScheme('forest',this)">
-        <span class="preview-swatch" style="background:linear-gradient(135deg,#10b981,#34d399)"></span>Forest
-      </button>
-      <button class="preview-pill" data-scheme="rose" onclick="setSuiteScheme('rose',this)">
-        <span class="preview-swatch" style="background:linear-gradient(135deg,#e879f9,#a855f7)"></span>Rose
-      </button>
-    </div>
-    <button class="preview-mode-btn" id="modeBtn" onclick="toggleSuiteMode()">☀️ Light</button>
-    <a class="preview-anchor" href="#which-tool">Which tool should I choose? ↓</a>
+  <!-- ── Guide strip ── -->
+  <div class="guide-strip">
+    <a class="guide-strip-link" href="#which-tool">Not sure which dashboard fits your goal? See the tool guide below ↓</a>
   </div>
 
   <!-- ── Split panel ── -->
@@ -675,6 +631,13 @@
           <span class="sidebar-item-icon">🧠</span>
           <span class="sidebar-item-label">Commerce Intelligence</span>
           <span class="cs-tag">Soon</span>
+        </button>
+      </div>
+
+      <!-- Mode toggle -->
+      <div class="sidebar-footer">
+        <button class="sidebar-mode-btn" id="modeBtn" onclick="toggleSuiteMode()">
+          ☀️ <span id="modeBtnLabel">Light mode</span>
         </button>
       </div>
     </nav>
@@ -851,17 +814,11 @@
       }
     }
 
-    function setSuiteScheme(scheme, btn) {
-      suiteScheme = scheme;
-      document.querySelectorAll('.preview-pill').forEach(p => p.classList.remove('active'));
-      const target = btn || document.querySelector(`.preview-pill[data-scheme="${scheme}"]`);
-      if (target) target.classList.add('active');
-      broadcastTheme();
-    }
-
     function toggleSuiteMode() {
       suiteMode = suiteMode === 'dark' ? 'light' : 'dark';
-      document.getElementById('modeBtn').textContent = suiteMode === 'light' ? '🌙 Dark' : '☀️ Light';
+      document.body.classList.toggle('suite-light', suiteMode === 'light');
+      document.getElementById('modeBtnLabel').textContent = suiteMode === 'light' ? 'Dark mode' : 'Light mode';
+      document.getElementById('modeBtn').firstChild.textContent = suiteMode === 'light' ? '🌙 ' : '☀️ ';
       broadcastTheme();
     }
 
