@@ -113,12 +113,21 @@
     }
     .guide-strip-link:hover { opacity: .72; }
 
+    /* ── Split panel wrapper ── */
+    .split-wrapper {
+      padding: 0 20px 0;
+      flex-shrink: 0;
+      background: var(--cr-bg);
+    }
+
     /* ── Split panel ── */
     .split-panel {
       display: flex;
       height: calc(100vh - 60px - 42px);
-      flex-shrink: 0;
       overflow: hidden;
+      border: 1px solid var(--cr-border);
+      border-radius: 10px;
+      box-shadow: 0 4px 24px rgba(0,0,0,.35);
     }
 
     /* ── Sidebar light mode ── */
@@ -138,6 +147,7 @@
       flex-shrink: 0;
       background: var(--cr-surface);
       border-right: 1px solid var(--cr-border);
+      border-radius: 10px 0 0 10px;
       overflow-y: auto;
       padding: 8px 0 20px;
       display: flex;
@@ -462,7 +472,8 @@
 
     /* ── Responsive ── */
     @media (max-width: 768px) {
-      .split-panel { flex-direction: column; height: auto; }
+      .split-wrapper { padding: 0 10px; }
+      .split-panel { flex-direction: column; height: auto; border-radius: 8px; }
       .split-sidebar {
         width: 100%;
         flex-direction: row;
@@ -517,6 +528,7 @@
   </div>
 
   <!-- ── Split panel ── -->
+  <div class="split-wrapper">
   <div class="split-panel">
 
     <!-- Left sidebar -->
@@ -630,6 +642,7 @@
       </div>
     </div>
 
+  </div>
   </div>
 
   <!-- ── Which tool should I choose? ── -->
