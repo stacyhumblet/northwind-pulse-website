@@ -448,7 +448,6 @@
 .cr-prop-card:hover {
   border-color: var(--cr-border-glow);
   box-shadow: var(--cr-shadow-purple);
-  transform: translateY(-4px);
 }
 
 .cr-prop-icon {
