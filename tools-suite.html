@@ -93,69 +93,121 @@
     }
     .suite-nav-cta:hover { background: var(--cr-purple-dim); }
 
-    /* ── Breadcrumb ── */
-    .suite-breadcrumb {
+    /* ── Preview controls bar ── */
+    .preview-controls {
       background: var(--cr-surface);
       border-bottom: 1px solid var(--cr-border);
-      padding: 7px 24px;
+      padding: 8px 16px;
       display: flex;
       align-items: center;
-      gap: 6px;
-      font-size: 11.5px;
+      gap: 10px;
+      flex-shrink: 0;
+      flex-wrap: wrap;
+    }
+    .preview-controls-label {
+      font-size: 9.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .9px;
       color: var(--cr-text-dim);
+      white-space: nowrap;
+      margin-right: 2px;
+    }
+    .preview-pills {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+      flex: 1;
+    }
+    .preview-pill {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: transparent;
+      border: 1.5px solid var(--cr-border);
+      border-radius: 100px;
+      padding: 4px 11px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--cr-text-dim);
+      cursor: pointer;
+      font-family: inherit;
+      transition: border-color var(--cr-transition), color var(--cr-transition), background var(--cr-transition);
+      white-space: nowrap;
+    }
+    .preview-pill:hover { border-color: var(--cr-border-glow); color: var(--cr-text); }
+    .preview-pill.active {
+      border-color: var(--cr-purple);
+      color: var(--cr-text);
+      background: var(--cr-purple-dim);
+    }
+    .preview-swatch {
+      width: 10px; height: 10px;
+      border-radius: 50%;
       flex-shrink: 0;
     }
-    .suite-breadcrumb a {
+    .preview-mode-btn {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: transparent;
+      border: 1.5px solid var(--cr-border);
+      border-radius: 100px;
+      padding: 4px 12px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--cr-text-dim);
+      cursor: pointer;
+      font-family: inherit;
+      transition: border-color var(--cr-transition), color var(--cr-transition);
+      white-space: nowrap;
+      margin-left: 4px;
+    }
+    .preview-mode-btn:hover { border-color: var(--cr-border-glow); color: var(--cr-text); }
+    .preview-anchor {
+      margin-left: auto;
+      font-size: 11px;
+      font-weight: 600;
       color: var(--cr-text-dim);
       text-decoration: none;
+      white-space: nowrap;
       transition: color var(--cr-transition);
     }
-    .suite-breadcrumb a:hover { color: var(--cr-purple-light); }
+    .preview-anchor:hover { color: var(--cr-purple-light); }
 
     /* ── Split panel ── */
     .split-panel {
       display: flex;
-      height: calc(100vh - 60px - 34px);
+      height: calc(100vh - 60px - 42px);
       flex-shrink: 0;
       overflow: hidden;
     }
 
     /* ── Sidebar ── */
     .split-sidebar {
-      width: 230px;
+      width: 210px;
       flex-shrink: 0;
       background: var(--cr-surface);
       border-right: 1px solid var(--cr-border);
       overflow-y: auto;
-      padding: 10px 0 20px;
+      padding: 8px 0 20px;
       display: flex;
       flex-direction: column;
     }
     .split-sidebar::-webkit-scrollbar { width: 4px; }
     .split-sidebar::-webkit-scrollbar-thumb { background: var(--cr-border); border-radius: 4px; }
 
-    .sidebar-suite-label {
-      font-size: 9px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--cr-text-dim);
-      padding: 4px 16px 10px;
-      border-bottom: 1px solid var(--cr-border);
-      margin-bottom: 8px;
-    }
-
-    .sidebar-section { margin-bottom: 4px; }
+    .sidebar-section { margin-bottom: 2px; }
     .sidebar-section-label {
       display: flex;
       align-items: center;
       gap: 7px;
-      font-size: 9.5px;
+      font-size: 9px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: .9px;
+      letter-spacing: .8px;
       color: var(--cr-text-dim);
-      padding: 10px 16px 4px;
+      padding: 8px 14px 3px;
     }
     .sidebar-dot {
       width: 6px; height: 6px;
@@ -166,9 +218,9 @@
     .sidebar-item {
       display: flex;
       align-items: center;
-      gap: 9px;
+      gap: 8px;
       width: 100%;
-      padding: 8px 14px 8px 16px;
+      padding: 7px 12px 7px 14px;
       background: none;
       border: none;
       cursor: pointer;
@@ -222,17 +274,12 @@
     .split-content-bar {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding: 10px 18px;
-      background: rgba(255,255,255,.015);
+      justify-content: flex-end;
+      padding: 6px 14px;
+      background: rgba(255,255,255,.01);
       border-bottom: 1px solid var(--cr-border);
       flex-shrink: 0;
       gap: 12px;
-    }
-    .split-content-title {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--cr-text);
     }
     .split-content-link {
       font-size: 11.5px;
@@ -479,7 +526,6 @@
       }
       .sidebar-section { display: inline-flex; flex-direction: column; }
       .sidebar-section-label { padding: 4px 12px 2px; }
-      .sidebar-suite-label { display: none; }
       .split-content { height: 70vh; }
       .suite-header-inner { padding: 0 16px; }
       .which-tool-section { padding: 40px 16px 60px; }
@@ -515,11 +561,31 @@
     </div>
   </header>
 
-  <!-- ── Breadcrumb ── -->
-  <div class="suite-breadcrumb">
-    <a href="index.html">Northwind Pulse™</a>
-    <span>›</span>
-    <span style="color:var(--cr-text-muted);">Tools Suite</span>
+  <!-- ── Preview controls ── -->
+  <div class="preview-controls">
+    <span class="preview-controls-label">Color Theme</span>
+    <div class="preview-pills">
+      <button class="preview-pill active" data-scheme="creator" onclick="setSuiteScheme('creator',this)">
+        <span class="preview-swatch" style="background:linear-gradient(135deg,#a855f7,#06b6d4)"></span>Creator
+      </button>
+      <button class="preview-pill" data-scheme="slate" onclick="setSuiteScheme('slate',this)">
+        <span class="preview-swatch" style="background:linear-gradient(135deg,#78909c,#546e7a)"></span>Slate
+      </button>
+      <button class="preview-pill" data-scheme="ocean" onclick="setSuiteScheme('ocean',this)">
+        <span class="preview-swatch" style="background:linear-gradient(135deg,#0ea5e9,#22d3ee)"></span>Ocean
+      </button>
+      <button class="preview-pill" data-scheme="sunset" onclick="setSuiteScheme('sunset',this)">
+        <span class="preview-swatch" style="background:linear-gradient(135deg,#f97316,#ec4899)"></span>Sunset
+      </button>
+      <button class="preview-pill" data-scheme="forest" onclick="setSuiteScheme('forest',this)">
+        <span class="preview-swatch" style="background:linear-gradient(135deg,#10b981,#34d399)"></span>Forest
+      </button>
+      <button class="preview-pill" data-scheme="rose" onclick="setSuiteScheme('rose',this)">
+        <span class="preview-swatch" style="background:linear-gradient(135deg,#e879f9,#a855f7)"></span>Rose
+      </button>
+    </div>
+    <button class="preview-mode-btn" id="modeBtn" onclick="toggleSuiteMode()">☀️ Light</button>
+    <a class="preview-anchor" href="#which-tool">Which tool should I choose? ↓</a>
   </div>
 
   <!-- ── Split panel ── -->
@@ -527,7 +593,6 @@
 
     <!-- Left sidebar -->
     <nav class="split-sidebar" aria-label="Dashboard navigation">
-      <div class="sidebar-suite-label">Creator &amp; Ecommerce Suite</div>
 
       <!-- Shopify -->
       <div class="sidebar-section">
@@ -617,7 +682,6 @@
     <!-- Right: content pane -->
     <div class="split-content">
       <div class="split-content-bar">
-        <span class="split-content-title" id="dashTitle">Revenue &amp; Sales Performance</span>
         <a class="split-content-link" id="dashOpenLink" href="https://shopify-rev-tools.northwind-consulting.com" target="_blank" rel="noopener noreferrer">
           Open in new tab
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
@@ -640,7 +704,7 @@
   </div>
 
   <!-- ── Which tool should I choose? ── -->
-  <section class="which-tool-section">
+  <section class="which-tool-section" id="which-tool">
     <div class="which-tool-header">
       <div class="which-tool-tag">Tool Guide</div>
       <h2>Which tool should I choose?</h2>
@@ -776,18 +840,49 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
+    // ── Theme state ──────────────────────────────────────────────────────────
+    let suiteScheme = 'creator';
+    let suiteMode   = 'dark';
+
+    function broadcastTheme() {
+      const frame = document.getElementById('dashFrame');
+      if (frame && frame.contentWindow) {
+        frame.contentWindow.postMessage({ type: 'nwp-theme', scheme: suiteScheme, mode: suiteMode }, '*');
+      }
+    }
+
+    function setSuiteScheme(scheme, btn) {
+      suiteScheme = scheme;
+      document.querySelectorAll('.preview-pill').forEach(p => p.classList.remove('active'));
+      const target = btn || document.querySelector(`.preview-pill[data-scheme="${scheme}"]`);
+      if (target) target.classList.add('active');
+      broadcastTheme();
+    }
+
+    function toggleSuiteMode() {
+      suiteMode = suiteMode === 'dark' ? 'light' : 'dark';
+      document.getElementById('modeBtn').textContent = suiteMode === 'light' ? '🌙 Dark' : '☀️ Light';
+      broadcastTheme();
+    }
+
+    // Send theme once the iframe finishes loading
+    document.getElementById('dashFrame').addEventListener('load', () => {
+      setTimeout(broadcastTheme, 400);
+    });
+
+    // ── Dashboard registry ───────────────────────────────────────────────────
     const DASHBOARDS = {
-      'shopify-rev':      { title: 'Revenue &amp; Sales Performance',  url: 'https://shopify-rev-tools.northwind-consulting.com',  live: true },
-      'shopify-product':  { title: 'Product Performance',              url: null,                                                  live: false },
-      'shopify-customers':{ title: 'Customer Analytics',               url: null,                                                  live: false },
+      'shopify-rev':      { title: 'Revenue &amp; Sales Performance',  url: 'https://shopify-rev-tools.northwind-consulting.com',      live: true },
+      'shopify-product':  { title: 'Product Performance',              url: null,                                                      live: false },
+      'shopify-customers':{ title: 'Customer Analytics',               url: null,                                                      live: false },
       'ig-rev':           { title: 'Revenue &amp; Conversion',         url: 'https://ig-rev-conversion-tools.northwind-consulting.com', live: true },
-      'ig-content':       { title: 'Content Performance',              url: null,                                                  live: false },
-      'ig-audience':      { title: 'Audience Growth',                  url: null,                                                  live: false },
-      'tt-content':       { title: 'TikTok Content Performance',       url: null,                                                  live: false },
-      'tt-audience':      { title: 'TikTok Audience Growth',           url: null,                                                  live: false },
-      'xplat':            { title: 'Cross-Platform Attribution',       url: 'https://xplat-tools.northwind-consulting.com',        live: true },
-      'xplat-roi':        { title: 'Campaign ROI',                     url: null,                                                  live: false },
-      'xplat-intel':      { title: 'Creator Commerce Intelligence',    url: null,                                                  live: false },
+      'ig-content':       { title: 'Content Performance',              url: null,                                                      live: false },
+      'ig-audience':      { title: 'Audience Growth',                  url: null,                                                      live: false },
+      'tt-content':       { title: 'TikTok Content Performance',       url: null,                                                      live: false },
+      'tt-audience':      { title: 'TikTok Audience Growth',           url: null,                                                      live: false },
+      'xplat':            { title: 'Cross-Platform Attribution',       url: 'https://xplat-tools.northwind-consulting.com',            live: true },
+      'xplat-roi':        { title: 'Campaign ROI',                     url: null,                                                      live: false },
+      'xplat-intel':      { title: 'Creator Commerce Intelligence',    url: null,                                                      live: false },
     };
 
     function loadDash(id) {
@@ -799,12 +894,9 @@
       const btn = document.querySelector(`.sidebar-item[data-id="${id}"]`);
       if (btn) btn.classList.add('active');
 
-      // Update top bar
-      document.getElementById('dashTitle').innerHTML = dash.title;
-
-      const frame      = document.getElementById('dashFrame');
+      const frame       = document.getElementById('dashFrame');
       const placeholder = document.getElementById('dashPlaceholder');
-      const openLink   = document.getElementById('dashOpenLink');
+      const openLink    = document.getElementById('dashOpenLink');
 
       if (dash.live) {
         frame.src = dash.url;
