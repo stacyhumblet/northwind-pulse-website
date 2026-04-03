@@ -832,7 +832,7 @@
       const openLink    = document.getElementById('dashOpenLink');
 
       if (dash.live) {
-        frame.src = dash.url;
+        frame.src = dash.url + '?t=' + Date.now();
         frame.style.display = '';
         placeholder.style.display = 'none';
         openLink.href = dash.url;
